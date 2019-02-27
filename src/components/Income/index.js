@@ -5,7 +5,7 @@ import Header from '../Header';
 
 const Income = ({onSelectOption, stepTitle}) => <div>
   <Container>
-    <Header title="¿Para qué quieres la hipoteca?" subTitle={stepTitle} />   
+    <Header title="¿Cuál es el nivel de ingresos netos mensuales de tu familia?" subTitle={stepTitle} />   
     <Row>
       <Col xs="6"><Button onClick={() => { onSelectOption(700); }}>Menos de 700</Button></Col>
       <Col xs="6"><Button onClick={() => { onSelectOption(1200); }}>700 a 1200</Button></Col>

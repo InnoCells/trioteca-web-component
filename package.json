@@ -2,6 +2,7 @@
   "name": "trioteca-web-component",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://trioteca.com",
   "dependencies": {
     "bootstrap": "^4.3.1",
     "prop-types": "^15.7.2",

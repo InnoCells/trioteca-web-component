@@ -21,7 +21,7 @@ class MortageTerm extends React.Component {
       <Row>
         <Col>
           {term}
-          <Slider onChange={term => this.setState({term})} value={term} min={10} max={45} />
+          <Slider onChange={term => this.setState({term})} value={term} min={10} max={40} />
         </Col>
       </Row>
       <Row>

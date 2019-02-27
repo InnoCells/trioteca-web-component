@@ -5,10 +5,10 @@ import Header from '../Header';
 
 const MortagePurpose = ({onSelectOption, stepTitle}) =>
   <Container>
-    <Header title="¿Para qué quieres la hipoteca?" subTitle={stepTitle} />   
+    <Header title="Calcula la hipoteca en 3 pasos" subTitle={stepTitle} />   
     <Row>
       <Col>
-        <Button onClick={() => { onSelectOption('regular');  }}>Vivienda habitual</Button>
+        <Button onClick={() => { onSelectOption('primary');  }}>Vivienda habitual</Button>
       </Col>
     </Row>
     <Row>

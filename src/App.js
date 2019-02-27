@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import StepWizard from 'react-step-wizard';
 
 import Footer from './components/Footer'
 import MortgagePurpose from './components/MortgagePurpose';
 import Income from './components/Income';
 import MortgageTerm from './components/MortgageTerm';
+import SavingsAvailable from './components/SavingsAvailable';
 import BestMortgage from './components/BestMortgage';
+import fetchMortgageOptions from './api/calculator';
 
 import './App.css';
 
@@ -15,40 +18,60 @@ class App extends Component {
     purpose: null,
     income: null,
     term: null,
-    mortgageOption: null
+    mortgageOptions: [],
+    isFetchingMortgageOptions: false
   }
 
-  Step1 = ({nextStep}) => 
-    <MortgagePurpose onSelectOption={purpose => {this.setState({purpose}); nextStep(); } } stepTitle="1/3" />
+  onTermSelected = async (term) => new Promise(async (resolve) => {
+    this.setState({term, isFetchingMortgageOptions: true}, async (currentState) => {
+      resolve();
+      const { term, purpose, income, savings } = this.state;
+      const { provinceId, price } = this.props;
+      const mortgageOptions = await fetchMortgageOptions({ price, provinceId, savings, term, purpose, income });
+      this.setState({mortgageOptions, isFetchingMortgageOptions: false});
+    })
+  });
 
-  Step2 = ({nextStep}) => 
-    <Income onSelectOption={income => {this.setState({income}); nextStep(); } } stepTitle="2/3" />
+  MortgagePurpose = ({nextStep}) => 
+    <MortgagePurpose onSelectOption={purpose => {this.setState({purpose}); nextStep(); } } />
 
-  Step3 = ({nextStep}) => 
-    <MortgageTerm onSelectOption={term => {this.setState({term}); nextStep(); } } stepTitle="3/3" />
+  Income = ({nextStep}) => 
+    <Income onSelectOption={income => {this.setState({income}); nextStep(); } } stepTitle="1/3" />
+
+  SavingsAvailable = ({nextStep}) => 
+    <SavingsAvailable onSelectOption={savings => {this.setState({savings}); nextStep(); } } maxAmount={this.props.price} stepTitle="2/3" />
+
+  MortgageTerm = ({nextStep}) => 
+    <MortgageTerm onSelectOption={async (term) => {
+        await this.onTermSelected(term);
+        nextStep();
+        } } stepTitle="3/3" />
   
-  Step4 = ({nextStep}) => 
+  BestMortgage = ({nextStep}) => 
     <BestMortgage onSelectOption={mortgageOption => {this.setState({mortgageOption}); } }
-      options={[
-        { name: 'Hipoteca Fija', feeType: '2,25% TIN', fee: 650 },
-        { name: 'Hipoteca Variable', feeType: 'Euribor + 0,79%', fee: 524 },
-      ]} />
+      isFetchingMortgageOptions={this.state.isFetchingMortgageOptions}
+      options={this.state.mortgageOptions} />
 
 
   render() {
     return (
       <div>
-        {JSON.stringify(this.state, null, 4)}
         <StepWizard >
-          <this.Step1 />
-          <this.Step2 />
-          <this.Step3 />
-          <this.Step4 />
+          <this.MortgagePurpose />
+          <this.Income />
+          <this.SavingsAvailable />
+          <this.MortgageTerm />
+          <this.BestMortgage />
         </StepWizard>
       <Footer />
       </div>
     );
   }
 }
+
+App.propTypes = {
+  price: PropTypes.number.isRequired,
+  provinceId: PropTypes.number.isRequired
+};
 
 export default App;
