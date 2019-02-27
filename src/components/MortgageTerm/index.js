@@ -9,32 +9,40 @@ import Header from '../Header';
 class MortageTerm extends React.Component {
   state = {
     term: 30
-  }
+  };
 
-  onSelectOption = () => this.props.onSelectOption(this.state.term); 
+  // eslint-disable-next-line react/destructuring-assignment
+  onSelectOption = () => this.props.onSelectOption(this.state.term);
 
-  render () {
+  render() {
     const { term } = this.state;
     const { stepTitle } = this.props;
-    return <Container>
-      <Header title="Indica el plazo a devolver" subTitle={stepTitle} />   
-      <Row>
-        <Col>
-          {term}
-          <Slider onChange={term => this.setState({term})} value={term} min={10} max={40} />
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <Button onClick={this.onSelectOption}>Seguir</Button>
-        </Col>
-      </Row>
-    </Container>;
+    return (
+      <Container>
+        <Header title="Indica el plazo a devolver" subTitle={stepTitle} />
+        <Row>
+          <Col>
+            {term}
+            <Slider onChange={newTerm => this.setState({ term: newTerm })} value={term} min={10} max={40} />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Button onClick={this.onSelectOption}>Seguir</Button>
+          </Col>
+        </Row>
+      </Container>
+    );
   }
 }
 
 MortageTerm.propTypes = {
-  onSelectOption: PropTypes.func.isRequired
+  onSelectOption: PropTypes.func.isRequired,
+  stepTitle: PropTypes.string
+};
+
+MortageTerm.defaultProps = {
+  stepTitle: null
 };
 
 export default MortageTerm;

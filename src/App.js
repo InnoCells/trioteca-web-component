@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import StepWizard from 'react-step-wizard';
 
-import Footer from './components/Footer'
+import Footer from './components/Footer';
 import MortgagePurpose from './components/MortgagePurpose';
 import Income from './components/Income';
 import MortgageTerm from './components/MortgageTerm';
@@ -13,57 +13,90 @@ import fetchMortgageOptions from './api/calculator';
 import './App.css';
 
 class App extends Component {
-
   state = {
     purpose: null,
     income: null,
     term: null,
     mortgageOptions: [],
     isFetchingMortgageOptions: false
-  }
+  };
 
-  onTermSelected = async (term) => new Promise(async (resolve) => {
-    this.setState({term, isFetchingMortgageOptions: true}, async (currentState) => {
-      resolve();
-      const { term, purpose, income, savings } = this.state;
-      const { provinceId, price } = this.props;
-      const mortgageOptions = await fetchMortgageOptions({ price, provinceId, savings, term, purpose, income });
-      this.setState({mortgageOptions, isFetchingMortgageOptions: false});
-    })
-  });
+  onTermSelected = async newTerm =>
+    new Promise(async resolve => {
+      this.setState({ term: newTerm, isFetchingMortgageOptions: true }, async () => {
+        resolve();
+        const { purpose, term, income, savings } = this.state;
+        const { provinceId, price } = this.props;
+        const mortgageOptions = await fetchMortgageOptions({ price, provinceId, savings, term, purpose, income });
+        this.setState({ mortgageOptions, isFetchingMortgageOptions: false });
+      });
+    });
 
-  MortgagePurpose = ({nextStep}) => 
-    <MortgagePurpose onSelectOption={purpose => {this.setState({purpose}); nextStep(); } } />
+  MortgagePurposeContainer = ({ nextStep }) => (
+    <MortgagePurpose
+      onSelectOption={purpose => {
+        this.setState({ purpose });
+        nextStep();
+      }}
+    />
+  );
 
-  Income = ({nextStep}) => 
-    <Income onSelectOption={income => {this.setState({income}); nextStep(); } } stepTitle="1/3" />
+  IncomeContainer = ({ nextStep }) => (
+    <Income
+      onSelectOption={income => {
+        this.setState({ income });
+        nextStep();
+      }}
+      stepTitle="1/3"
+    />
+  );
 
-  SavingsAvailable = ({nextStep}) => 
-    <SavingsAvailable onSelectOption={savings => {this.setState({savings}); nextStep(); } } maxAmount={this.props.price} stepTitle="2/3" />
+  SavingsAvailableContainer = ({ nextStep, price }) => (
+    <SavingsAvailable
+      onSelectOption={savings => {
+        this.setState({ savings });
+        nextStep();
+      }}
+      maxAmount={price}
+      stepTitle="2/3"
+    />
+  );
 
-  MortgageTerm = ({nextStep}) => 
-    <MortgageTerm onSelectOption={async (term) => {
+  MortgageTermContainer = ({ nextStep }) => (
+    <MortgageTerm
+      onSelectOption={async term => {
         await this.onTermSelected(term);
         nextStep();
-        } } stepTitle="3/3" />
-  
-  BestMortgage = ({nextStep}) => 
-    <BestMortgage onSelectOption={mortgageOption => {this.setState({mortgageOption}); } }
-      isFetchingMortgageOptions={this.state.isFetchingMortgageOptions}
-      options={this.state.mortgageOptions} />
+      }}
+      stepTitle="3/3"
+    />
+  );
 
+  BestMortgageContainer = () => (
+    <BestMortgage
+      onSelectOption={mortgageOption => {
+        // eslint-disable-next-line react/no-unused-state
+        this.setState({ mortgageOption });
+      }}
+      // eslint-disable-next-line react/destructuring-assignment
+      isFetchingMortgageOptions={this.state.isFetchingMortgageOptions}
+      // eslint-disable-next-line react/destructuring-assignment
+      options={this.state.mortgageOptions}
+    />
+  );
 
   render() {
+    const { price } = this.props;
     return (
       <div>
-        <StepWizard >
-          <this.MortgagePurpose />
-          <this.Income />
-          <this.SavingsAvailable />
-          <this.MortgageTerm />
-          <this.BestMortgage />
+        <StepWizard>
+          <this.MortgagePurposeContainer />
+          <this.IncomeContainer />
+          <this.SavingsAvailableContainer price={price} />
+          <this.MortgageTermContainer />
+          <this.BestMortgageContainer />
         </StepWizard>
-      <Footer />
+        <Footer />
       </div>
     );
   }

@@ -3,23 +3,41 @@ import PropTypes from 'prop-types';
 import { Button, Container, Row, Col } from 'reactstrap';
 import Header from '../Header';
 
-const MortagePurpose = ({onSelectOption, stepTitle}) =>
+const MortagePurpose = ({ onSelectOption, stepTitle }) => (
   <Container>
-    <Header title="Calcula la hipoteca en 3 pasos" subTitle={stepTitle} />   
+    <Header title="Calcula la hipoteca en 3 pasos" subTitle={stepTitle} />
     <Row>
       <Col>
-        <Button onClick={() => { onSelectOption('primary');  }}>Vivienda habitual</Button>
+        <Button
+          onClick={() => {
+            onSelectOption('primary');
+          }}
+        >
+          Vivienda habitual
+        </Button>
       </Col>
     </Row>
     <Row>
       <Col>
-        <Button onClick={() => {onSelectOption('occasional'); }}>Vivienda ocasional</Button>
+        <Button
+          onClick={() => {
+            onSelectOption('occasional');
+          }}
+        >
+          Vivienda ocasional
+        </Button>
       </Col>
     </Row>
   </Container>
+);
 
 MortagePurpose.propTypes = {
-  onSelectOption: PropTypes.func.isRequired
+  onSelectOption: PropTypes.func.isRequired,
+  stepTitle: PropTypes.string
+};
+
+MortagePurpose.defaultProps = {
+  stepTitle: null
 };
 
 export default MortagePurpose;
