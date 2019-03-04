@@ -24,21 +24,23 @@ class SavingsAvailable extends React.Component {
     return (
       <Container>
         <Header title="Indica el ahorro inicial disponible" subTitle={stepTitle} />
-        <Row>
-          <Col>
-            {savings}
-            <Slider
-              onChange={newSavings => this.setState({ savings: newSavings })}
-              value={savings}
-              min={minAmount}
-              max={maxAmount}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <NextButton onClick={this.onSelectOption}>Seguir</NextButton>
-          </Col>
+        <Row className="content">
+          <Row>
+            <Col>
+              {savings}
+              <Slider
+                onChange={newSavings => this.setState({ savings: newSavings })}
+                value={savings}
+                min={minAmount}
+                max={maxAmount}
+              />
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <NextButton onClick={this.onSelectOption}>Seguir</NextButton>
+            </Col>
+          </Row>
         </Row>
       </Container>
     );

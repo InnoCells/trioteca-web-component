@@ -21,16 +21,18 @@ class MortageTerm extends React.Component {
     return (
       <Container>
         <Header title="Indica el plazo a devolver" subTitle={stepTitle} />
-        <Row>
-          <Col>
-            {term}
-            <Slider onChange={newTerm => this.setState({ term: newTerm })} value={term} min={10} max={40} />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <NextButton onClick={this.onSelectOption}>Seguir</NextButton>
-          </Col>
+        <Row className="content">
+          <Row>
+            <Col>
+              {term}
+              <Slider onChange={newTerm => this.setState({ term: newTerm })} value={term} min={10} max={40} />
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <NextButton onClick={this.onSelectOption}>Seguir</NextButton>
+            </Col>
+          </Row>
         </Row>
       </Container>
     );

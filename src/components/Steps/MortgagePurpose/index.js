@@ -3,12 +3,11 @@ import PropTypes from 'prop-types';
 import { Container, Row } from 'reactstrap';
 import NextButton from '../../NextButton';
 import Header from '../../Header';
-import './styles.css';
 
 const MortagePurpose = ({ onSelectOption, stepTitle }) => (
   <Container>
     <Header title="¿Para qué quieres tu hipoteca?" subTitle={stepTitle} />
-    <Row className="body">
+    <Row className="content">
       <NextButton
         onClick={() => {
           onSelectOption('primary');

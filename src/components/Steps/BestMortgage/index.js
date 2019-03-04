@@ -34,16 +34,18 @@ class BestMortage extends React.Component {
     return (
       <Container>
         <Header title="Hemos encontrado la mejor hipoteca para ti" subTitle={stepTitle} />
-        {isFetchingMortgageOptions && <Spinner />}
-        {!isFetchingMortgageOptions &&
-          options &&
-          options.map(option => (
-            <Row key={option.name}>
-              <Col>
-                <OptionButton option={option} onSelectOption={() => onSelectOption(option)} />
-              </Col>
-            </Row>
-          ))}
+        <Row className="content">
+          {isFetchingMortgageOptions && <Spinner />}
+          {!isFetchingMortgageOptions &&
+            options &&
+            options.map(option => (
+              <Row key={option.name}>
+                <Col>
+                  <OptionButton option={option} onSelectOption={() => onSelectOption(option)} />
+                </Col>
+              </Row>
+            ))}
+        </Row>
       </Container>
     );
   }

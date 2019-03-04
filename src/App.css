@@ -8,7 +8,7 @@
   align-items: center;
   height: 300px;
 }
-.body {
+.content {
   flex: 1;
   flex-direction: column;
   justify-content: center;

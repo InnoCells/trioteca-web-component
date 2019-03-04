@@ -48,7 +48,6 @@ class App extends Component {
         this.setState({ purpose });
         nextStep();
       }}
-      stepTitle="0 / 3"
     />
   );
 
