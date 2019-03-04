@@ -1,43 +1,70 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col, Input } from 'reactstrap';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
 import NextButton from '../../NextButton';
 import Header from '../../Header';
+import './style.css';
 
 class SavingsAvailable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      savings: props.initialAmount
+      savings: props.initialAmount,
+      inputSavings: props.initialAmount
     };
   }
 
   // eslint-disable-next-line react/destructuring-assignment
   onSelectOption = () => this.props.onSelectOption(this.state.savings);
 
+  handleTextInputChange = event => {
+    this.setState({ inputSavings: event.target.value });
+  };
+
+  handleTextInputBlur = () => {
+    const { inputSavings, savings } = this.state;
+    const newSavings = parseInt(inputSavings, 10);
+    if (Number.isNaN(newSavings)) {
+      this.setState({ inputSavings: savings });
+    } else {
+      this.setState({ savings: newSavings });
+    }
+  };
+
+  handleSliderChange = newSavings => {
+    this.setState({ savings: newSavings, inputSavings: newSavings });
+  };
+
   render() {
-    const { savings } = this.state;
-    const { stepTitle, minAmount, maxAmount } = this.props;
+    const { savings, inputSavings } = this.state;
+    const { stepTitle, minAmount, maxAmount, initialAmount } = this.props;
     return (
       <Container>
         <Header title="Indica el ahorro inicial disponible" subTitle={stepTitle} />
         <Row className="content">
           <Row>
             <Col>
-              {savings}
+              <Input
+                className="savingsInput"
+                type="number"
+                value={inputSavings}
+                onChange={this.handleTextInputChange}
+                onBlur={this.handleTextInputBlur}
+                placeholder="Ahorros disponibles"
+              />
               <Slider
-                onChange={newSavings => this.setState({ savings: newSavings })}
+                className="slider"
+                onChange={this.handleSliderChange}
+                defaultValue={initialAmount}
+                tabIndex={-1}
+                steps={1}
                 value={savings}
                 min={minAmount}
                 max={maxAmount}
               />
-            </Col>
-          </Row>
-          <Row>
-            <Col>
               <NextButton onClick={this.onSelectOption}>Seguir</NextButton>
             </Col>
           </Row>

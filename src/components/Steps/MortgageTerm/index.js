@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col, Input } from 'reactstrap';
 import Slider from 'rc-slider';
 import NextButton from '../../NextButton';
 import 'rc-slider/assets/index.css';
@@ -8,15 +8,37 @@ import 'rc-slider/assets/index.css';
 import Header from '../../Header';
 
 class MortageTerm extends React.Component {
-  state = {
-    term: 30
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      term: 30,
+      inputTerm: 30
+    };
+  }
 
   // eslint-disable-next-line react/destructuring-assignment
   onSelectOption = () => this.props.onSelectOption(this.state.term);
 
+  handleTextInputChange = event => {
+    this.setState({ inputTerm: event.target.value });
+  };
+
+  handleTextInputBlur = () => {
+    const { inputTerm, term } = this.state;
+    const newTerm = parseInt(inputTerm, 10);
+    if (Number.isNaN(newTerm)) {
+      this.setState({ inputTerm: term });
+    } else {
+      this.setState({ term: newTerm });
+    }
+  };
+
+  handleSliderChange = newTerm => {
+    this.setState({ term: newTerm, inputTerm: newTerm });
+  };
+
   render() {
-    const { term } = this.state;
+    const { term, inputTerm } = this.state;
     const { stepTitle } = this.props;
     return (
       <Container>
@@ -24,12 +46,14 @@ class MortageTerm extends React.Component {
         <Row className="content">
           <Row>
             <Col>
-              {term}
-              <Slider onChange={newTerm => this.setState({ term: newTerm })} value={term} min={10} max={40} />
-            </Col>
-          </Row>
-          <Row>
-            <Col>
+              <Input
+                className="savingsInput"
+                type="number"
+                value={inputTerm}
+                onChange={this.handleTextInputChange}
+                onBlur={this.handleTextInputBlur}
+              />
+              <Slider onChange={this.handleSliderChange} tabIndex={-1} value={term} min={10} max={30} />
               <NextButton onClick={this.onSelectOption}>Seguir</NextButton>
             </Col>
           </Row>

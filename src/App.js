@@ -8,7 +8,7 @@ import fetchMortgageOptions from './api/calculator';
 
 import './App.css';
 
-const MIN_SAVINGS_PERCENT = 0.3321;
+const minSavingsPercent = purpose => (purpose === 'primary' ? 0.35 : 0.45);
 
 class App extends Component {
   state = {
@@ -30,7 +30,7 @@ class App extends Component {
           const mortgageOptions = await fetchMortgageOptions({
             price,
             provinceId,
-            savings: savings < price * MIN_SAVINGS_PERCENT ? price * MIN_SAVINGS_PERCENT : savings,
+            savings: savings < price * minSavingsPercent(term) ? price * minSavingsPercent(term) : savings,
             term,
             purpose,
             income
@@ -61,13 +61,13 @@ class App extends Component {
     />
   );
 
-  SavingsAvailableContainer = ({ nextStep, price }) => (
+  SavingsAvailableContainer = ({ nextStep, term, price }) => (
     <SavingsAvailable
       onSelectOption={savings => {
         this.setState({ savings });
         nextStep();
       }}
-      initialAmount={price * MIN_SAVINGS_PERCENT}
+      initialAmount={price * minSavingsPercent(term)}
       maxAmount={price}
       stepTitle="2 / 3"
     />
@@ -100,13 +100,14 @@ class App extends Component {
 
   render() {
     const { price } = this.props;
+    const { term } = this.state;
 
     return (
       <div>
         <StepWizard>
           <this.MortgagePurposeContainer />
           <this.IncomeContainer />
-          <this.SavingsAvailableContainer price={price} />
+          <this.SavingsAvailableContainer price={price} term={term} />
           <this.MortgageTermContainer />
           <this.BestMortgageContainer />
         </StepWizard>

@@ -1,0 +1,10 @@
+.savingsInput,
+.savingsInput:focus {
+  color: #c2da5f;
+}
+
+.savingsInput:focus {
+  border: none;
+  box-shadow: none;
+  border: 1px solid #ced4da;
+}

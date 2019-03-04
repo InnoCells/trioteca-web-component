@@ -25,3 +25,31 @@
     max-width: 100%;
   }
 }
+
+.rc-slider {
+  margin: 25px 0;
+}
+.rc-slider-track {
+  height: 6px;
+  background-image: linear-gradient(to right, #00a657, #68c157, #89ca57, #bfd857);
+}
+.rc-slider-handle {
+  margin-left: -10px;
+  margin-top: -12px;
+  width: 28px;
+  height: 28px;
+  border: none;
+  background-color: #004b35;
+}
+.rc-slider-handle::after {
+  content: '< >';
+  color: #fff;
+  font-size: 10px;
+  position: relative;
+  left: 6px;
+  top: -1px;
+}
+.rc-slider-rail {
+  background-color: #e6e8ec;
+  height: 6px;
+}
