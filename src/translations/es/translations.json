@@ -3,5 +3,8 @@
     "title": "¿Para qué quieres tu hipoteca?",
     "primaryButtonTitle": "Vivienda habitual",
     "occasionalButtonTitle": "Vivienda ocasional"
+  },
+  "footer": {
+    "title": "Powered by Trioteca"
   }
 }
