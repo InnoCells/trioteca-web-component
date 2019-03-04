@@ -1,13 +1,17 @@
 .btn-secondary,
-.btn-secondary:hover {
+.btn-secondary:hover,
+.btn-secondary:active,
+.btn-secondary:focus,
+.btn-secondary:not(:disabled):not(.disabled):active,
+.btn-secondary:not(:disabled):not(.disabled):active:focus {
   background-color: #fff;
   border-color: #d1ebbd;
   color: #006a4d;
   min-width: 200px;
   margin: 10px 5px 10px 0;
+  box-shadow: 3px 3px #69be28;
 }
 .btn-secondary {
   font-size: 14px;
   border: 1px solid #d1ebbd;
-  box-shadow: 3px 3px #69be28;
 }

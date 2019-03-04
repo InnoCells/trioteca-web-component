@@ -16,7 +16,7 @@ const NextButton = ({ onClick, children }) => (
 
 NextButton.propTypes = {
   onClick: PropTypes.func.isRequired,
-  children: PropTypes.string.isRequired
+  children: PropTypes.node.isRequired
 };
 
 export default NextButton;

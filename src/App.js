@@ -42,6 +42,16 @@ class App extends Component {
       });
     });
 
+  onMortgageSelected = mortgageOption => {
+    const { price, provinceId } = this.props;
+    const { purpose, income, term } = this.state;
+    const { type } = mortgageOption;
+    window.open(
+      `https://trioteca.com/dashboard/configura/entradadisponible?term=${term}&purpose=${purpose}&income=${income}&type=${type}&price=${price}&provinceId=${provinceId}`,
+      '_blank'
+    );
+  };
+
   MortgagePurposeContainer = ({ nextStep }) => (
     <MortgagePurpose
       onSelectOption={purpose => {
@@ -85,10 +95,7 @@ class App extends Component {
 
   BestMortgageContainer = () => (
     <BestMortgage
-      onSelectOption={mortgageOption => {
-        // eslint-disable-next-line react/no-unused-state
-        this.setState({ mortgageOption });
-      }}
+      onSelectOption={this.onMortgageSelected}
       // eslint-disable-next-line react/destructuring-assignment
       isFetchingMortgageOptions={this.state.isFetchingMortgageOptions}
       // eslint-disable-next-line react/destructuring-assignment

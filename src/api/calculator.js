@@ -26,7 +26,7 @@ const fetchMortgageOption = async ({ price, provinceId, term, savings, purpose, 
   }
 
   const { monthly_payment: monthlyPayment, tin } = results;
-  return { monthlyPayment, tin };
+  return { monthlyPayment, tin, type };
 };
 
 const fetchMortgageOptions = async options => {
