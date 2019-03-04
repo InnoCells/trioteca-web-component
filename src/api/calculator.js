@@ -17,14 +17,15 @@ const fetchMortgageOption = async ({ price, provinceId, term, savings, purpose, 
       }
     })
   });
-  const result = await response.json();
-  const { error_message: error } = result;
 
-  if (error) {
-    return { error };
+  const result = await response.json();
+
+  const { results } = result;
+  if (!results) {
+    throw new Error('Unexpected response: missing results');
   }
 
-  const { monthly_payment: monthlyPayment, tin } = result.results;
+  const { monthly_payment: monthlyPayment, tin } = results;
   return { monthlyPayment, tin };
 };
 

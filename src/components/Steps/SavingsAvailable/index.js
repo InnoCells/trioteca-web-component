@@ -4,12 +4,15 @@ import { Button, Container, Row, Col } from 'reactstrap';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
-import Header from '../Header';
+import Header from '../../Header';
 
 class SavingsAvailable extends React.Component {
-  state = {
-    savings: 20000
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      savings: props.initialAmount
+    };
+  }
 
   // eslint-disable-next-line react/destructuring-assignment
   onSelectOption = () => this.props.onSelectOption(this.state.savings);
@@ -43,12 +46,14 @@ class SavingsAvailable extends React.Component {
 
 SavingsAvailable.propTypes = {
   onSelectOption: PropTypes.func.isRequired,
+  initialAmount: PropTypes.number,
   minAmount: PropTypes.number,
   maxAmount: PropTypes.number,
   stepTitle: PropTypes.string
 };
 
 SavingsAvailable.defaultProps = {
+  initialAmount: 20000,
   minAmount: 10000,
   maxAmount: 1000000,
   stepTitle: null

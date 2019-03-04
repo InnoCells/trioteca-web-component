@@ -4,7 +4,7 @@ import { Button, Container, Row, Col } from 'reactstrap';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
-import Header from '../Header';
+import Header from '../../Header';
 
 class MortageTerm extends React.Component {
   state = {

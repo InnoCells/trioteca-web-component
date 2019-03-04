@@ -2,21 +2,20 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import StepWizard from 'react-step-wizard';
 
+import { MortgagePurpose, Income, MortgageTerm, SavingsAvailable, BestMortgage } from './components/Steps';
 import Footer from './components/Footer';
-import MortgagePurpose from './components/MortgagePurpose';
-import Income from './components/Income';
-import MortgageTerm from './components/MortgageTerm';
-import SavingsAvailable from './components/SavingsAvailable';
-import BestMortgage from './components/BestMortgage';
 import fetchMortgageOptions from './api/calculator';
 
 import './App.css';
+
+const MIN_SAVINGS_PERCENT = 0.3321;
 
 class App extends Component {
   state = {
     purpose: null,
     income: null,
     term: null,
+    error: null,
     mortgageOptions: [],
     isFetchingMortgageOptions: false
   };
@@ -27,8 +26,19 @@ class App extends Component {
         resolve();
         const { purpose, term, income, savings } = this.state;
         const { provinceId, price } = this.props;
-        const mortgageOptions = await fetchMortgageOptions({ price, provinceId, savings, term, purpose, income });
-        this.setState({ mortgageOptions, isFetchingMortgageOptions: false });
+        try {
+          const mortgageOptions = await fetchMortgageOptions({
+            price,
+            provinceId,
+            savings: savings < price * MIN_SAVINGS_PERCENT ? price * MIN_SAVINGS_PERCENT : savings,
+            term,
+            purpose,
+            income
+          });
+          this.setState({ mortgageOptions, isFetchingMortgageOptions: false });
+        } catch (error) {
+          this.setState({ error: error.message, isFetchingMortgageOptions: false });
+        }
       });
     });
 
@@ -57,6 +67,7 @@ class App extends Component {
         this.setState({ savings });
         nextStep();
       }}
+      initialAmount={price * MIN_SAVINGS_PERCENT}
       maxAmount={price}
       stepTitle="2/3"
     />
@@ -82,11 +93,14 @@ class App extends Component {
       isFetchingMortgageOptions={this.state.isFetchingMortgageOptions}
       // eslint-disable-next-line react/destructuring-assignment
       options={this.state.mortgageOptions}
+      // eslint-disable-next-line react/destructuring-assignment
+      error={this.state.error}
     />
   );
 
   render() {
     const { price } = this.props;
+
     return (
       <div>
         <StepWizard>
