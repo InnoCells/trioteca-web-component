@@ -14,6 +14,7 @@ const MortagePurpose = ({ onSelectOption, stepTitle }) => (
           }}
         >
           Vivienda habitual
+          <i className="fa fa-home" />
         </Button>
       </Col>
     </Row>
