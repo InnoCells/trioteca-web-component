@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
+import NextButton from '../../NextButton';
 import Header from '../../Header';
 
 class SavingsAvailable extends React.Component {
@@ -36,7 +37,7 @@ class SavingsAvailable extends React.Component {
         </Row>
         <Row>
           <Col>
-            <Button onClick={this.onSelectOption}>Seguir</Button>
+            <NextButton onClick={this.onSelectOption}>Seguir</NextButton>
           </Col>
         </Row>
       </Container>

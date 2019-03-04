@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Container, Row, Col, Spinner } from 'reactstrap';
+import { Container, Row, Col, Spinner } from 'reactstrap';
+import NextButton from '../../NextButton';
 import Header from '../../Header';
 
 const OptionButton = ({ onSelectOption, option: { name, tin, monthlyPayment, error } }) => (
-  <Button onClick={onSelectOption}>
+  <NextButton onClick={onSelectOption}>
     <p>{name}</p>
     {error ? (
       <p>{error}</p>
@@ -14,7 +15,7 @@ const OptionButton = ({ onSelectOption, option: { name, tin, monthlyPayment, err
         <p>{monthlyPayment}</p>
       </div>
     )}
-  </Button>
+  </NextButton>
 );
 
 // eslint-disable-next-line react/prefer-stateless-function

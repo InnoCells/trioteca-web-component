@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
+import NextButton from '../../NextButton';
 import Header from '../../Header';
 
 const MortagePurpose = ({ onSelectOption, stepTitle }) => (
@@ -8,25 +9,24 @@ const MortagePurpose = ({ onSelectOption, stepTitle }) => (
     <Header title="¿Para qué quieres tu hipoteca?" subTitle={stepTitle} />
     <Row>
       <Col>
-        <Button
+        <NextButton
           onClick={() => {
             onSelectOption('primary');
           }}
         >
           Vivienda habitual
-          <i className="fa fa-home" />
-        </Button>
+        </NextButton>
       </Col>
     </Row>
     <Row>
       <Col>
-        <Button
+        <NextButton
           onClick={() => {
             onSelectOption('occasional');
           }}
         >
           Vivienda ocasional
-        </Button>
+        </NextButton>
       </Col>
     </Row>
   </Container>

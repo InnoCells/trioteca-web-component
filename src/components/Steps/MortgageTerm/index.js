@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 import Slider from 'rc-slider';
+import NextButton from '../../NextButton';
 import 'rc-slider/assets/index.css';
 
 import Header from '../../Header';
@@ -28,7 +29,7 @@ class MortageTerm extends React.Component {
         </Row>
         <Row>
           <Col>
-            <Button onClick={this.onSelectOption}>Seguir</Button>
+            <NextButton onClick={this.onSelectOption}>Seguir</NextButton>
           </Col>
         </Row>
       </Container>

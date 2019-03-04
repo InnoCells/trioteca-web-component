@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
+import NextButton from '../../NextButton';
 import Header from '../../Header';
 
 const Income = ({ onSelectOption, stepTitle }) => (
@@ -9,64 +10,64 @@ const Income = ({ onSelectOption, stepTitle }) => (
       <Header title="¿Cuál es el nivel de ingresos netos mensuales de tu familia?" subTitle={stepTitle} />
       <Row>
         <Col xs="6">
-          <Button
+          <NextButton
             onClick={() => {
               onSelectOption(700);
             }}
           >
             Menos de 700
-          </Button>
+          </NextButton>
         </Col>
         <Col xs="6">
-          <Button
+          <NextButton
             onClick={() => {
               onSelectOption(1200);
             }}
           >
             700 a 1200
-          </Button>
+          </NextButton>
         </Col>
       </Row>
 
       <Row>
         <Col xs="6">
-          <Button
+          <NextButton
             onClick={() => {
               onSelectOption(1800);
             }}
           >
             1200 a 1800
-          </Button>
+          </NextButton>
         </Col>
         <Col xs="6">
-          <Button
+          <NextButton
             onClick={() => {
               onSelectOption(2500);
             }}
           >
             1800 a 2500
-          </Button>
+          </NextButton>
         </Col>
       </Row>
 
       <Row>
         <Col xs="6">
-          <Button
+          <NextButton
             onClick={() => {
               onSelectOption(3500);
             }}
           >
             2500 a 3500
-          </Button>
+          </NextButton>
         </Col>
         <Col xs="6">
-          <Button
+          <NextButton
             onClick={() => {
               onSelectOption(3501);
             }}
           >
             3500 o más
-          </Button>
+          </NextButton>
         </Col>
       </Row>
     </Container>
