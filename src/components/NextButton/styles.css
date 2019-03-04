@@ -1,0 +1,13 @@
+.btn-secondary,
+.btn-secondary:hover {
+  background-color: #fff;
+  border-color: #d1ebbd;
+  color: #006a4d;
+  min-width: 200px;
+  margin: 10px 5px;
+}
+.btn-secondary {
+  font-size: 14px;
+  border: 1px solid #d1ebbd;
+  box-shadow: 3px 3px #69be28;
+}

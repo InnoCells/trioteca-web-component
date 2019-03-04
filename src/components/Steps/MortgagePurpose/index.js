@@ -1,33 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row } from 'reactstrap';
 import NextButton from '../../NextButton';
 import Header from '../../Header';
+import './styles.css';
 
 const MortagePurpose = ({ onSelectOption, stepTitle }) => (
   <Container>
     <Header title="¿Para qué quieres tu hipoteca?" subTitle={stepTitle} />
-    <Row>
-      <Col>
-        <NextButton
-          onClick={() => {
-            onSelectOption('primary');
-          }}
-        >
-          Vivienda habitual
-        </NextButton>
-      </Col>
-    </Row>
-    <Row>
-      <Col>
-        <NextButton
-          onClick={() => {
-            onSelectOption('occasional');
-          }}
-        >
-          Vivienda ocasional
-        </NextButton>
-      </Col>
+    <Row className="body">
+      <NextButton
+        onClick={() => {
+          onSelectOption('primary');
+        }}
+      >
+        Vivienda habitual
+      </NextButton>
+      <NextButton
+        onClick={() => {
+          onSelectOption('occasional');
+        }}
+      >
+        Vivienda ocasional
+      </NextButton>
     </Row>
   </Container>
 );
