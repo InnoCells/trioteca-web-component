@@ -48,6 +48,7 @@ class App extends Component {
         this.setState({ purpose });
         nextStep();
       }}
+      stepTitle="0 / 3"
     />
   );
 
@@ -57,7 +58,7 @@ class App extends Component {
         this.setState({ income });
         nextStep();
       }}
-      stepTitle="1/3"
+      stepTitle="1 / 3"
     />
   );
 
@@ -69,7 +70,7 @@ class App extends Component {
       }}
       initialAmount={price * MIN_SAVINGS_PERCENT}
       maxAmount={price}
-      stepTitle="2/3"
+      stepTitle="2 / 3"
     />
   );
 
@@ -79,7 +80,7 @@ class App extends Component {
         await this.onTermSelected(term);
         nextStep();
       }}
-      stepTitle="3/3"
+      stepTitle="3 / 3"
     />
   );
 

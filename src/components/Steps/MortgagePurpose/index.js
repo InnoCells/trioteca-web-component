@@ -5,7 +5,7 @@ import Header from '../../Header';
 
 const MortagePurpose = ({ onSelectOption, stepTitle }) => (
   <Container>
-    <Header title="Calcula la hipoteca en 3 pasos" subTitle={stepTitle} />
+    <Header title="¿Para qué quieres tu hipoteca?" subTitle={stepTitle} />
     <Row>
       <Col>
         <Button

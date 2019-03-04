@@ -1,13 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Jumbotron, Container } from 'reactstrap';
+import './styles.css';
 
 const Header = ({ title, subTitle }) => (
   <Jumbotron fluid>
+    <div className="firstBorder" />
+    <div className="secondBorder" />
     <Container fluid>
-      <h2>{title}</h2>
-      {subTitle && <p>{subTitle}</p>}
+      <span>{title}</span>
     </Container>
+    {subTitle && <div className="subtitle">{subTitle}</div>}
   </Jumbotron>
 );
 
