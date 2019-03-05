@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Container, Row, Col } from 'reactstrap';
+import { withTranslation } from 'react-i18next';
 import NextButton from '../../NextButton';
 import Header from '../../Header';
 
-const Income = ({ onSelectOption, stepTitle }) => (
+const Income = ({ onSelectOption, stepTitle, t }) => (
   <div>
     <Container>
-      <Header title="¿Cuál es el nivel de ingresos netos mensuales de tu familia?" subTitle={stepTitle} />
+      <Header title={t('income.title')} subTitle={stepTitle} />
       <Row className="content">
         <Row>
           <Col xs="6">
@@ -16,7 +17,7 @@ const Income = ({ onSelectOption, stepTitle }) => (
                 onSelectOption(700);
               }}
             >
-              Menos de 700
+              {t('income.option1')}
             </NextButton>
           </Col>
           <Col xs="6">
@@ -25,7 +26,7 @@ const Income = ({ onSelectOption, stepTitle }) => (
                 onSelectOption(1200);
               }}
             >
-              700 a 1200
+              {t('income.option2')}
             </NextButton>
           </Col>
         </Row>
@@ -37,7 +38,7 @@ const Income = ({ onSelectOption, stepTitle }) => (
                 onSelectOption(1800);
               }}
             >
-              1200 a 1800
+              {t('income.option3')}
             </NextButton>
           </Col>
           <Col xs="6">
@@ -46,7 +47,7 @@ const Income = ({ onSelectOption, stepTitle }) => (
                 onSelectOption(2500);
               }}
             >
-              1800 a 2500
+              {t('income.option4')}
             </NextButton>
           </Col>
         </Row>
@@ -58,7 +59,7 @@ const Income = ({ onSelectOption, stepTitle }) => (
                 onSelectOption(3500);
               }}
             >
-              2500 a 3500
+              {t('income.option5')}
             </NextButton>
           </Col>
           <Col xs="6">
@@ -67,7 +68,7 @@ const Income = ({ onSelectOption, stepTitle }) => (
                 onSelectOption(3501);
               }}
             >
-              3500 o más
+              {t('income.option6')}
             </NextButton>
           </Col>
         </Row>
@@ -77,6 +78,7 @@ const Income = ({ onSelectOption, stepTitle }) => (
 );
 
 Income.propTypes = {
+  t: PropTypes.func.isRequired,
   onSelectOption: PropTypes.func.isRequired,
   stepTitle: PropTypes.string
 };
@@ -85,4 +87,4 @@ Income.defaultProps = {
   stepTitle: null
 };
 
-export default Income;
+export default withTranslation()(Income);

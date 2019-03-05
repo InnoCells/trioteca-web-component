@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Container, Row, Col, Input } from 'reactstrap';
 import Slider from 'rc-slider';
+import { withTranslation } from 'react-i18next';
 import NextButton from '../../NextButton';
 import 'rc-slider/assets/index.css';
 
@@ -39,10 +40,10 @@ class MortageTerm extends React.Component {
 
   render() {
     const { term, inputTerm } = this.state;
-    const { stepTitle } = this.props;
+    const { stepTitle, t } = this.props;
     return (
       <Container>
-        <Header title="Indica el plazo a devolver" subTitle={stepTitle} />
+        <Header title={t('mortgageTerm.title')} subTitle={stepTitle} />
         <Row className="content">
           <Row>
             <Col>
@@ -54,7 +55,7 @@ class MortageTerm extends React.Component {
                 onBlur={this.handleTextInputBlur}
               />
               <Slider onChange={this.handleSliderChange} tabIndex={-1} value={term} min={10} max={30} />
-              <NextButton onClick={this.onSelectOption}>Seguir</NextButton>
+              <NextButton onClick={this.onSelectOption}>{t('common.next')}</NextButton>
             </Col>
           </Row>
         </Row>
@@ -64,6 +65,7 @@ class MortageTerm extends React.Component {
 }
 
 MortageTerm.propTypes = {
+  t: PropTypes.func.isRequired,
   onSelectOption: PropTypes.func.isRequired,
   stepTitle: PropTypes.string
 };
@@ -72,4 +74,4 @@ MortageTerm.defaultProps = {
   stepTitle: null
 };
 
-export default MortageTerm;
+export default withTranslation()(MortageTerm);

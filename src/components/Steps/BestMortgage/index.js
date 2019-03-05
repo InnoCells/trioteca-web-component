@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Container, Row, Col, Spinner } from 'reactstrap';
+import { withTranslation } from 'react-i18next';
 import NextButton from '../../NextButton';
 import Header from '../../Header';
 
@@ -21,7 +22,7 @@ const OptionButton = ({ onSelectOption, option: { name, tin, monthlyPayment, err
 // eslint-disable-next-line react/prefer-stateless-function
 class BestMortage extends React.Component {
   render() {
-    const { onSelectOption, options, isFetchingMortgageOptions, stepTitle, error } = this.props;
+    const { onSelectOption, options, isFetchingMortgageOptions, stepTitle, error, t } = this.props;
 
     if (error) {
       return (
@@ -33,7 +34,7 @@ class BestMortage extends React.Component {
 
     return (
       <Container>
-        <Header title="Hemos encontrado la mejor hipoteca para ti" subTitle={stepTitle} />
+        <Header title={t('bestMortgage.title')} subTitle={stepTitle} />
         <Row className="content">
           {isFetchingMortgageOptions && <Spinner />}
           {!isFetchingMortgageOptions &&
@@ -63,6 +64,7 @@ OptionButton.propTypes = {
 };
 
 BestMortage.propTypes = {
+  t: PropTypes.func.isRequired,
   onSelectOption: PropTypes.func.isRequired,
   isFetchingMortgageOptions: PropTypes.bool,
   stepTitle: PropTypes.string,
@@ -77,4 +79,4 @@ BestMortage.defaultProps = {
   error: null
 };
 
-export default BestMortage;
+export default withTranslation()(BestMortage);

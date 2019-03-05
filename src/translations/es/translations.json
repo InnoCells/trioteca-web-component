@@ -1,4 +1,7 @@
 {
+  "common": {
+    "next": "Seguir"
+  },
   "mortagePurpose": {
     "title": "¿Para qué quieres tu hipoteca?",
     "primaryButtonTitle": "Vivienda habitual",
@@ -6,5 +9,23 @@
   },
   "footer": {
     "title": "Powered by Trioteca"
+  },
+  "bestMortgage": {
+    "title": "Hemos encontrado la mejor hipoteca para ti"
+  },
+  "income": {
+    "title": "¿Cuál es el nivel de ingresos netos mensuales de tu familia?",
+    "option1": "Menos de 700",
+    "option2": "700 a 1200",
+    "option3": "1200 a 1800",
+    "option4": "1800 a 2500",
+    "option5": "2500 a 3500",
+    "option6": "3500 o más"
+  },
+  "mortgageTerm": {
+    "title": "Indica el plazo a devolver"
+  },
+  "savingsAvailable": {
+    "title": "Indica el ahorro inicial disponible"
   }
 }

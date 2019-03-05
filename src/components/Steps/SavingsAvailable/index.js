@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Container, Row, Col, Input } from 'reactstrap';
 import Slider from 'rc-slider';
+import { withTranslation } from 'react-i18next';
 import 'rc-slider/assets/index.css';
 
 import NextButton from '../../NextButton';
@@ -40,10 +41,10 @@ class SavingsAvailable extends React.Component {
 
   render() {
     const { savings, inputSavings } = this.state;
-    const { stepTitle, minAmount, maxAmount, initialAmount } = this.props;
+    const { stepTitle, minAmount, maxAmount, initialAmount, t } = this.props;
     return (
       <Container>
-        <Header title="Indica el ahorro inicial disponible" subTitle={stepTitle} />
+        <Header title={t('savingsAvailable.title')} subTitle={stepTitle} />
         <Row className="content">
           <Row>
             <Col>
@@ -53,7 +54,6 @@ class SavingsAvailable extends React.Component {
                 value={inputSavings}
                 onChange={this.handleTextInputChange}
                 onBlur={this.handleTextInputBlur}
-                placeholder="Ahorros disponibles"
               />
               <Slider
                 className="slider"
@@ -65,7 +65,7 @@ class SavingsAvailable extends React.Component {
                 min={minAmount}
                 max={maxAmount}
               />
-              <NextButton onClick={this.onSelectOption}>Seguir</NextButton>
+              <NextButton onClick={this.onSelectOption}>{t('common.next')}</NextButton>
             </Col>
           </Row>
         </Row>
@@ -75,6 +75,7 @@ class SavingsAvailable extends React.Component {
 }
 
 SavingsAvailable.propTypes = {
+  t: PropTypes.func.isRequired,
   onSelectOption: PropTypes.func.isRequired,
   initialAmount: PropTypes.number,
   minAmount: PropTypes.number,
@@ -89,4 +90,4 @@ SavingsAvailable.defaultProps = {
   stepTitle: null
 };
 
-export default SavingsAvailable;
+export default withTranslation()(SavingsAvailable);
