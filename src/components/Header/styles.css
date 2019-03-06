@@ -19,6 +19,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  padding: 0 25px;
 }
 .subtitle {
   display: flex;
@@ -26,7 +28,7 @@
   align-items: center;
 
   position: absolute;
-  top: 120px;
+  top: 140px;
   left: 50%;
   margin-left: -33px;
   margin-top: -15px;

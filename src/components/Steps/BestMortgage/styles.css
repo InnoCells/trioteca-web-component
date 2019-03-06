@@ -1,0 +1,17 @@
+.bestMortgage-name {
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.bestMortgage-tin {
+  font-size: 10px;
+  top: -10px;
+  position: relative;
+}
+
+.bestMortgage-monthlyPayment {
+  font-weight: 800;
+  font-size: 19px;
+  position: relative;
+  top: -5px;
+}

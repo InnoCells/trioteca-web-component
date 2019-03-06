@@ -4,17 +4,20 @@ import { Container, Row, Col, Spinner } from 'reactstrap';
 import { withTranslation } from 'react-i18next';
 import NextButton from '../../NextButton';
 import Header from '../../Header';
+import './styles.css';
 
 const OptionButton = ({ onSelectOption, option: { name, tin, monthlyPayment, error } }) => (
   <NextButton onClick={onSelectOption}>
-    <p>{name}</p>
     {error ? (
-      <p>{error}</p>
+      `${error}<br />`
     ) : (
-      <div>
-        <p>{tin}</p>
-        <p>{monthlyPayment}</p>
-      </div>
+      <span>
+        <span className="bestMortgage-name">{name}</span>
+        <br />
+        <span className="bestMortgage-tin">{tin}</span>
+        <br />
+        <span className="bestMortgage-monthlyPayment">{monthlyPayment}</span>
+      </span>
     )}
   </NextButton>
 );
@@ -36,16 +39,14 @@ class BestMortage extends React.Component {
       <Container>
         <Header title={t('bestMortgage.title')} subTitle={stepTitle} />
         <Row className="content">
-          {isFetchingMortgageOptions && <Spinner />}
-          {!isFetchingMortgageOptions &&
-            options &&
-            options.map(option => (
-              <Row key={option.name}>
-                <Col>
-                  <OptionButton option={option} onSelectOption={() => onSelectOption(option)} />
-                </Col>
-              </Row>
-            ))}
+          <Col xs="7">
+            {isFetchingMortgageOptions && <Spinner />}
+            {!isFetchingMortgageOptions &&
+              options &&
+              options.map(option => (
+                <OptionButton key={option.name} option={option} onSelectOption={() => onSelectOption(option)} />
+              ))}
+          </Col>
         </Row>
       </Container>
     );

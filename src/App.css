@@ -54,7 +54,7 @@
 .textInput,
 .textInput:focus {
   color: #004b35;
-  font-size: 14px;
+  font-size: 13px;
   border: 1px solid #004b35;
   text-align: center;
 }
