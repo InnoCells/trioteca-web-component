@@ -93,24 +93,24 @@ class App extends Component {
     />
   );
 
-  BestMortgageContainer = () => (
-    <BestMortgage
-      onSelectOption={this.onMortgageSelected}
-      // eslint-disable-next-line react/destructuring-assignment
-      isFetchingMortgageOptions={this.state.isFetchingMortgageOptions}
-      // eslint-disable-next-line react/destructuring-assignment
-      options={this.state.mortgageOptions}
-      // eslint-disable-next-line react/destructuring-assignment
-      error={this.state.error}
-    />
-  );
+  BestMortgageContainer = () => {
+    const { isFetchingMortgageOptions, mortgageOptions, error } = this.state;
+    return (
+      <BestMortgage
+        onSelectOption={this.onMortgageSelected}
+        isFetchingMortgageOptions={isFetchingMortgageOptions}
+        options={mortgageOptions}
+        error={error}
+      />
+    );
+  };
 
   render() {
     const { price } = this.props;
     const { term } = this.state;
 
     return (
-      <div>
+      <div className="wizardWrapper">
         <StepWizard>
           <this.MortgagePurposeContainer />
           <this.IncomeContainer />
