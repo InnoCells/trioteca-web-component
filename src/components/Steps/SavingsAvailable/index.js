@@ -7,7 +7,6 @@ import 'rc-slider/assets/index.css';
 
 import NextButton from '../../NextButton';
 import Header from '../../Header';
-import './style.css';
 
 class SavingsAvailable extends React.Component {
   constructor(props) {
@@ -46,28 +45,26 @@ class SavingsAvailable extends React.Component {
       <Container>
         <Header title={t('savingsAvailable.title')} subTitle={stepTitle} />
         <Row className="content">
-          <Row>
-            <Col>
-              <Input
-                className="savingsInput"
-                type="number"
-                value={inputSavings}
-                onChange={this.handleTextInputChange}
-                onBlur={this.handleTextInputBlur}
-              />
-              <Slider
-                className="slider"
-                onChange={this.handleSliderChange}
-                defaultValue={initialAmount}
-                tabIndex={-1}
-                steps={1}
-                value={savings}
-                min={minAmount}
-                max={maxAmount}
-              />
-              <NextButton onClick={this.onSelectOption}>{t('common.next')}</NextButton>
-            </Col>
-          </Row>
+          <Col xs="7">
+            <Input
+              className="textInput"
+              type="number"
+              value={inputSavings}
+              onChange={this.handleTextInputChange}
+              onBlur={this.handleTextInputBlur}
+            />
+            <Slider
+              className="slider"
+              onChange={this.handleSliderChange}
+              defaultValue={initialAmount}
+              tabIndex={-1}
+              steps={1}
+              value={savings}
+              min={minAmount}
+              max={maxAmount}
+            />
+            <NextButton onClick={this.onSelectOption}>{t('common.next')}</NextButton>
+          </Col>
         </Row>
       </Container>
     );

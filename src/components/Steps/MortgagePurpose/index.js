@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, Row } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 import { withTranslation } from 'react-i18next';
 import NextButton from '../../NextButton';
 import Header from '../../Header';
@@ -10,20 +10,22 @@ const MortagePurpose = ({ onSelectOption, stepTitle, t }) => {
     <Container>
       <Header title={t('mortagePurpose.title')} subTitle={stepTitle} />
       <Row className="content">
-        <NextButton
-          onClick={() => {
-            onSelectOption('primary');
-          }}
-        >
-          {t('mortagePurpose.primaryButtonTitle')}
-        </NextButton>
-        <NextButton
-          onClick={() => {
-            onSelectOption('occasional');
-          }}
-        >
-          {t('mortagePurpose.occasionalButtonTitle')}
-        </NextButton>
+        <Col xs="7">
+          <NextButton
+            onClick={() => {
+              onSelectOption('primary');
+            }}
+          >
+            {t('mortagePurpose.primaryButtonTitle')}
+          </NextButton>
+          <NextButton
+            onClick={() => {
+              onSelectOption('occasional');
+            }}
+          >
+            {t('mortagePurpose.occasionalButtonTitle')}
+          </NextButton>
+        </Col>
       </Row>
     </Container>
   );

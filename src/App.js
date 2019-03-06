@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import StepWizard from 'react-step-wizard';
 
+import StepWizard from './components/step-wizard';
 import { MortgagePurpose, Income, MortgageTerm, SavingsAvailable, BestMortgage } from './components/Steps';
 import Footer from './components/Footer';
 import fetchMortgageOptions from './api/calculator';

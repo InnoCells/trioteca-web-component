@@ -5,8 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import './styles.css';
 
-const NextButton = ({ onClick, children }) => (
-  <Button onClick={onClick}>
+const NextButton = ({ onClick, children, ...props }) => (
+  <Button onClick={onClick} {...props}>
     {children}
     <span className="float-right">
       <FontAwesomeIcon icon={faAngleRight} />

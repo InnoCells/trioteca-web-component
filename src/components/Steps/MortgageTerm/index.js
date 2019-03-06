@@ -45,19 +45,17 @@ class MortageTerm extends React.Component {
       <Container>
         <Header title={t('mortgageTerm.title')} subTitle={stepTitle} />
         <Row className="content">
-          <Row>
-            <Col>
-              <Input
-                className="savingsInput"
-                type="number"
-                value={inputTerm}
-                onChange={this.handleTextInputChange}
-                onBlur={this.handleTextInputBlur}
-              />
-              <Slider onChange={this.handleSliderChange} tabIndex={-1} value={term} min={10} max={30} />
-              <NextButton onClick={this.onSelectOption}>{t('common.next')}</NextButton>
-            </Col>
-          </Row>
+          <Col xs="7">
+            <Input
+              className="textInput"
+              type="number"
+              value={inputTerm}
+              onChange={this.handleTextInputChange}
+              onBlur={this.handleTextInputBlur}
+            />
+            <Slider onChange={this.handleSliderChange} tabIndex={-1} value={term} min={10} max={30} />
+            <NextButton onClick={this.onSelectOption}>{t('common.next')}</NextButton>
+          </Col>
         </Row>
       </Container>
     );

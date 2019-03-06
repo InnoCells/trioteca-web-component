@@ -13,6 +13,7 @@ const Income = ({ onSelectOption, stepTitle, t }) => (
         <Row>
           <Col xs="6">
             <NextButton
+              className="btn-sm"
               onClick={() => {
                 onSelectOption(700);
               }}
@@ -22,6 +23,7 @@ const Income = ({ onSelectOption, stepTitle, t }) => (
           </Col>
           <Col xs="6">
             <NextButton
+              className="btn-sm"
               onClick={() => {
                 onSelectOption(1200);
               }}
@@ -34,6 +36,7 @@ const Income = ({ onSelectOption, stepTitle, t }) => (
         <Row>
           <Col xs="6">
             <NextButton
+              className="btn-sm"
               onClick={() => {
                 onSelectOption(1800);
               }}
@@ -43,6 +46,7 @@ const Income = ({ onSelectOption, stepTitle, t }) => (
           </Col>
           <Col xs="6">
             <NextButton
+              className="btn-sm"
               onClick={() => {
                 onSelectOption(2500);
               }}
@@ -55,6 +59,7 @@ const Income = ({ onSelectOption, stepTitle, t }) => (
         <Row>
           <Col xs="6">
             <NextButton
+              className="btn-sm"
               onClick={() => {
                 onSelectOption(3500);
               }}
@@ -64,6 +69,7 @@ const Income = ({ onSelectOption, stepTitle, t }) => (
           </Col>
           <Col xs="6">
             <NextButton
+              className="btn-sm"
               onClick={() => {
                 onSelectOption(3501);
               }}

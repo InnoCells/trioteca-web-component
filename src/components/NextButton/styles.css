@@ -5,13 +5,15 @@
 .btn-secondary:not(:disabled):not(.disabled):active,
 .btn-secondary:not(:disabled):not(.disabled):active:focus {
   background-color: #fff;
-  border-color: #d1ebbd;
   color: #006a4d;
+  width: 100%;
   min-width: 200px;
   margin: 10px 5px 10px 0;
   box-shadow: 3px 3px #69be28;
-}
-.btn-secondary {
   font-size: 14px;
   border: 1px solid #d1ebbd;
+}
+
+.btn-sm {
+  min-width: 160px !important;
 }

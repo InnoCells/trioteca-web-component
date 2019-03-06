@@ -1,19 +1,16 @@
+.col-6 {
+  padding: 0 10px;
+}
 .container {
   padding: 0;
   margin: 0;
-}
-.wizardWrapper {
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-  height: 300px;
 }
 .content {
   flex: 1;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 260px;
+  height: 240px;
 }
 @media (min-width: 768px) {
   .container {
@@ -34,7 +31,7 @@
   background-image: linear-gradient(to right, #00a657, #68c157, #89ca57, #bfd857);
 }
 .rc-slider-handle {
-  margin-left: -10px;
+  margin-left: -13px;
   margin-top: -12px;
   width: 28px;
   height: 28px;
@@ -52,4 +49,17 @@
 .rc-slider-rail {
   background-color: #e6e8ec;
   height: 6px;
+}
+
+.textInput,
+.textInput:focus {
+  color: #004b35;
+  font-size: 14px;
+  border: 1px solid #004b35;
+  text-align: center;
+}
+
+.textInput:focus {
+  border: none;
+  box-shadow: none;
 }
