@@ -40,10 +40,10 @@ class MortageTerm extends React.Component {
 
   render() {
     const { term, inputTerm } = this.state;
-    const { stepTitle, t } = this.props;
+    const { stepTitle, t, onClickBackButton } = this.props;
     return (
       <Container>
-        <Header title={t('mortgageTerm.title')} subTitle={stepTitle} />
+        <Header title={t('mortgageTerm.title')} subTitle={stepTitle} onClickBackButton={onClickBackButton} />
         <Row className="content">
           <Col xs="7">
             <Input
@@ -65,11 +65,13 @@ class MortageTerm extends React.Component {
 MortageTerm.propTypes = {
   t: PropTypes.func.isRequired,
   onSelectOption: PropTypes.func.isRequired,
+  onClickBackButton: PropTypes.func,
   stepTitle: PropTypes.string
 };
 
 MortageTerm.defaultProps = {
-  stepTitle: null
+  stepTitle: null,
+  onClickBackButton: null
 };
 
 export default withTranslation()(MortageTerm);

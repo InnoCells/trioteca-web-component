@@ -61,43 +61,47 @@ class App extends Component {
     />
   );
 
-  IncomeContainer = ({ nextStep }) => (
+  IncomeContainer = ({ nextStep, previousStep }) => (
     <Income
       onSelectOption={income => {
         this.setState({ income });
         nextStep();
       }}
+      onClickBackButton={previousStep}
       stepTitle="1 / 3"
     />
   );
 
-  SavingsAvailableContainer = ({ nextStep, term, price }) => (
+  SavingsAvailableContainer = ({ nextStep, term, price, previousStep }) => (
     <SavingsAvailable
       onSelectOption={savings => {
         this.setState({ savings });
         nextStep();
       }}
+      onClickBackButton={previousStep}
       initialAmount={price * minSavingsPercent(term)}
       maxAmount={price}
       stepTitle="2 / 3"
     />
   );
 
-  MortgageTermContainer = ({ nextStep }) => (
+  MortgageTermContainer = ({ nextStep, previousStep }) => (
     <MortgageTerm
       onSelectOption={async term => {
         await this.onTermSelected(term);
         nextStep();
       }}
+      onClickBackButton={previousStep}
       stepTitle="3 / 3"
     />
   );
 
-  BestMortgageContainer = () => {
+  BestMortgageContainer = ({ previousStep }) => {
     const { isFetchingMortgageOptions, mortgageOptions, error } = this.state;
     return (
       <BestMortgage
         onSelectOption={this.onMortgageSelected}
+        onClickBackButton={previousStep}
         isFetchingMortgageOptions={isFetchingMortgageOptions}
         options={mortgageOptions}
         error={error}

@@ -30,7 +30,7 @@ const OptionButton = ({ onSelectOption, option: { name, tin, monthlyPayment, err
 // eslint-disable-next-line react/prefer-stateless-function
 class BestMortage extends React.Component {
   render() {
-    const { onSelectOption, options, isFetchingMortgageOptions, stepTitle, error, t } = this.props;
+    const { onSelectOption, options, isFetchingMortgageOptions, stepTitle, error, t, onClickBackButton } = this.props;
 
     if (error) {
       return (
@@ -42,7 +42,7 @@ class BestMortage extends React.Component {
 
     return (
       <Container>
-        <Header title={t('bestMortgage.title')} subTitle={stepTitle} />
+        <Header title={t('bestMortgage.title')} subTitle={stepTitle} onClickBackButton={onClickBackButton} />
         <Row className="content">
           <Col xs="7">
             {isFetchingMortgageOptions && <Spinner />}
@@ -72,6 +72,7 @@ OptionButton.propTypes = {
 BestMortage.propTypes = {
   t: PropTypes.func.isRequired,
   onSelectOption: PropTypes.func.isRequired,
+  onClickBackButton: PropTypes.func,
   isFetchingMortgageOptions: PropTypes.bool,
   stepTitle: PropTypes.string,
   options: PropTypes.arrayOf(MortgageOptionType),
@@ -82,7 +83,8 @@ BestMortage.defaultProps = {
   stepTitle: null,
   isFetchingMortgageOptions: false,
   options: null,
-  error: null
+  error: null,
+  onClickBackButton: null
 };
 
 export default withTranslation()(BestMortage);

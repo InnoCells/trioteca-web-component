@@ -5,10 +5,10 @@ import { withTranslation } from 'react-i18next';
 import NextButton from '../../NextButton';
 import Header from '../../Header';
 
-const Income = ({ onSelectOption, stepTitle, t }) => (
+const Income = ({ onSelectOption, stepTitle, t, onClickBackButton }) => (
   <div>
     <Container>
-      <Header title={t('income.title')} subTitle={stepTitle} />
+      <Header title={t('income.title')} subTitle={stepTitle} onClickBackButton={onClickBackButton} />
       <Row className="content">
         <Row>
           <Col xs="6">
@@ -86,11 +86,13 @@ const Income = ({ onSelectOption, stepTitle, t }) => (
 Income.propTypes = {
   t: PropTypes.func.isRequired,
   onSelectOption: PropTypes.func.isRequired,
+  onClickBackButton: PropTypes.func,
   stepTitle: PropTypes.string
 };
 
 Income.defaultProps = {
-  stepTitle: null
+  stepTitle: null,
+  onClickBackButton: null
 };
 
 export default withTranslation()(Income);

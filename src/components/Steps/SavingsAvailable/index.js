@@ -40,10 +40,10 @@ class SavingsAvailable extends React.Component {
 
   render() {
     const { savings, inputSavings } = this.state;
-    const { stepTitle, minAmount, maxAmount, initialAmount, t } = this.props;
+    const { stepTitle, minAmount, maxAmount, initialAmount, t, onClickBackButton } = this.props;
     return (
       <Container>
-        <Header title={t('savingsAvailable.title')} subTitle={stepTitle} />
+        <Header title={t('savingsAvailable.title')} subTitle={stepTitle} onClickBackButton={onClickBackButton} />
         <Row className="content">
           <Col xs="7">
             <Input
@@ -74,6 +74,7 @@ class SavingsAvailable extends React.Component {
 SavingsAvailable.propTypes = {
   t: PropTypes.func.isRequired,
   onSelectOption: PropTypes.func.isRequired,
+  onClickBackButton: PropTypes.func,
   initialAmount: PropTypes.number,
   minAmount: PropTypes.number,
   maxAmount: PropTypes.number,
@@ -84,7 +85,8 @@ SavingsAvailable.defaultProps = {
   initialAmount: 20000,
   minAmount: 10000,
   maxAmount: 1000000,
-  stepTitle: null
+  stepTitle: null,
+  onClickBackButton: null
 };
 
 export default withTranslation()(SavingsAvailable);
