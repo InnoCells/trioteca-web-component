@@ -1,5 +1,5 @@
 const fetchMortgageOption = async ({ price, provinceId, term, savings, purpose, income, type }) => {
-  const response = await fetch('/api/walking_user', {
+  const response = await fetch('https://trioteca.com/api/walking_user ', {
     method: 'POST',
     headers: {
       Accept: 'application/json',

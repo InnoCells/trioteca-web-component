@@ -14,7 +14,7 @@ const Header = ({ title, subTitle, onClickBackButton }) => (
     </Container>
     {subTitle && <div className="subtitle">{subTitle}</div>}
     {onClickBackButton && (
-      <div className="back" onClick={onClickBackButton}>
+      <div className="back" onClick={onClickBackButton} onKeyPress={() => {}} role="button" tabIndex="0">
         <FontAwesomeIcon icon={faArrowLeft} style={{ 'font-size': '14px' }} />
       </div>
     )}

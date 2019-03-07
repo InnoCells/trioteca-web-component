@@ -5,10 +5,10 @@ import { withTranslation } from 'react-i18next';
 import NextButton from '../../NextButton';
 import Header from '../../Header';
 
-const MortagePurpose = ({ onSelectOption, stepTitle, t }) => {
+const MortagePurpose = ({ onSelectOption, stepTitle, t, onClickBackButton }) => {
   return (
     <Container>
-      <Header title={t('mortagePurpose.title')} subTitle={stepTitle} onClickBackButton={() => console.log('back')} />
+      <Header title={t('mortagePurpose.title')} subTitle={stepTitle} onClickBackButton={onClickBackButton} />
       <Row className="content">
         <Col xs="7">
           <NextButton
@@ -34,11 +34,13 @@ const MortagePurpose = ({ onSelectOption, stepTitle, t }) => {
 MortagePurpose.propTypes = {
   t: PropTypes.func.isRequired,
   onSelectOption: PropTypes.func.isRequired,
+  onClickBackButton: PropTypes.func,
   stepTitle: PropTypes.string
 };
 
 MortagePurpose.defaultProps = {
-  stepTitle: null
+  stepTitle: null,
+  onClickBackButton: null
 };
 
 export default withTranslation()(MortagePurpose);
