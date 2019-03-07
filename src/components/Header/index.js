@@ -15,7 +15,7 @@ const Header = ({ title, subTitle, onClickBackButton }) => (
     {subTitle && <div className="subtitle">{subTitle}</div>}
     {onClickBackButton && (
       <div className="back" onClick={onClickBackButton} onKeyPress={() => {}} role="button" tabIndex="0">
-        <FontAwesomeIcon icon={faArrowLeft} style={{ 'font-size': '14px' }} />
+        <FontAwesomeIcon icon={faArrowLeft} style={{ fontSize: '14px' }} />
       </div>
     )}
   </Jumbotron>

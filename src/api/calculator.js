@@ -20,13 +20,13 @@ const fetchMortgageOption = async ({ price, provinceId, term, savings, purpose, 
 
   const result = await response.json();
 
-  const { results } = result;
+  const { uuid, results } = result;
   if (!results) {
     throw new Error('Unexpected response: missing results');
   }
 
   const { monthly_payment: monthlyPayment, tin } = results;
-  return { monthlyPayment, tin, type };
+  return { uuid, monthlyPayment, tin, type };
 };
 
 const fetchMortgageOptions = async options => {
@@ -39,9 +39,20 @@ const fetchMortgageOptions = async options => {
     await fetchMortgageOption({ ...options, type: 'V' })
   ]);
   const [fixed, variable] = result;
+  const url = `https://trioteca.com/dashboard/configura?uuid=${fixed.uuid}`;
   return [
-    { ...fixed, name: 'Hipoteca Fija', tin: fixed.tin ? `${fixed.tin}% TIN` : null },
-    { ...variable, name: 'Hipoteca Variable', tin: variable.tin ? `Euribor + ${variable.tin}%` : null }
+    {
+      ...fixed,
+      name: 'Hipoteca Fija',
+      tin: fixed.tin ? `${fixed.tin}% TIN` : null,
+      url
+    },
+    {
+      ...variable,
+      name: 'Hipoteca Variable',
+      tin: variable.tin ? `Euribor + ${variable.tin}%` : null,
+      url
+    }
   ];
 };
 

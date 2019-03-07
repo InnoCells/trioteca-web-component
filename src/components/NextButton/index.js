@@ -10,7 +10,7 @@ const NextButton = ({ onClick, children, showRightArow, ...props }) => (
     {children}
     {showRightArow && (
       <span className="float-right">
-        <FontAwesomeIcon icon={faAngleRight} style={{ 'font-size': '14px' }} />
+        <FontAwesomeIcon icon={faAngleRight} style={{ fontSize: '14px' }} />
       </span>
     )}
   </Button>

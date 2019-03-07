@@ -43,13 +43,8 @@ class App extends Component {
     });
 
   onMortgageSelected = mortgageOption => {
-    const { price, provinceId } = this.props;
-    const { purpose, income, term } = this.state;
-    const { type } = mortgageOption;
-    window.open(
-      `https://trioteca.com/dashboard/configura/entradadisponible?term=${term}&purpose=${purpose}&income=${income}&type=${type}&price=${price}&provinceId=${provinceId}`,
-      '_blank'
-    );
+    const { url } = mortgageOption;
+    window.open(url, '_blank');
   };
 
   MortgagePurposeContainer = ({ nextStep }) => (
