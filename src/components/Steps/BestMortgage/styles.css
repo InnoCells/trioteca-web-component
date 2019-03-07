@@ -5,13 +5,44 @@
 
 .bestMortgage-tin {
   font-size: 10px;
-  top: -10px;
+  top: -8px;
   position: relative;
 }
 
 .bestMortgage-monthlyPayment {
-  font-weight: 800;
-  font-size: 19px;
   position: relative;
   top: -5px;
+}
+
+.bestMortgage-monthlyPaymentAmount {
+  font-weight: 800;
+  font-size: 22px;
+}
+
+.bestMortgage-monthlyPaymentLabel {
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.bestMortgage-btn,
+.bestMortgage-btn:active,
+.bestMortgage-btn:focus,
+.bestMortgage-btn:not(:disabled):not(.disabled):active,
+.bestMortgage-btn:not(:disabled):not(.disabled):active:focus,
+.btn-secondary.error:hover {
+  padding-top: 0.25rem;
+  padding-bottom: 0;
+}
+
+.btn-secondary.error {
+  padding: 1rem 2rem;
+}
+
+.btn-secondary.error:hover {
+  cursor: auto;
+}
+
+.bestMortgage-btn .float-right {
+  top: -10px;
+  position: relative;
 }

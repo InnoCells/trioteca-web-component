@@ -7,16 +7,21 @@ import Header from '../../Header';
 import './styles.css';
 
 const OptionButton = ({ onSelectOption, option: { name, tin, monthlyPayment, error } }) => (
-  <NextButton onClick={onSelectOption}>
+  <NextButton
+    onClick={() => !error && onSelectOption()}
+    className={`bestMortgage-btn ${error ? 'error' : ''}`}
+    showRightArow={!error}
+  >
     {error ? (
-      `${error}<br />`
+      `${error}`
     ) : (
       <span>
         <span className="bestMortgage-name">{name}</span>
         <br />
         <span className="bestMortgage-tin">{tin}</span>
         <br />
-        <span className="bestMortgage-monthlyPayment">{monthlyPayment}</span>
+        <span className="bestMortgage-monthlyPayment bestMortgage-monthlyPaymentAmount">{monthlyPayment}</span>
+        <span className="bestMortgage-monthlyPayment bestMortgage-monthlyPaymentLabel">€/mes</span>
       </span>
     )}
   </NextButton>

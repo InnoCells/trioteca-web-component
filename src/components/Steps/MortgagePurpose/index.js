@@ -8,7 +8,7 @@ import Header from '../../Header';
 const MortagePurpose = ({ onSelectOption, stepTitle, t }) => {
   return (
     <Container>
-      <Header title={t('mortagePurpose.title')} subTitle={stepTitle} />
+      <Header title={t('mortagePurpose.title')} subTitle={stepTitle} onClickBackButton={() => console.log('back')} />
       <Row className="content">
         <Col xs="7">
           <NextButton

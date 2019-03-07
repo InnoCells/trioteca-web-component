@@ -2,7 +2,8 @@
 .btn-secondary:active,
 .btn-secondary:focus,
 .btn-secondary:not(:disabled):not(.disabled):active,
-.btn-secondary:not(:disabled):not(.disabled):active:focus {
+.btn-secondary:not(:disabled):not(.disabled):active:focus,
+.btn-secondary.error:hover {
   background-color: #fff;
   color: #006a4d;
   width: 100%;
@@ -14,7 +15,7 @@
   padding: 0.5rem;
 }
 
-.btn-secondary:hover {
+.btn-secondary:hover:not(.error) {
   background-color: #006a4d;
   color: #fff;
 }

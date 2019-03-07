@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Jumbotron, Container } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import './styles.css';
 
-const Header = ({ title, subTitle }) => (
+const Header = ({ title, subTitle, onClickBackButton }) => (
   <Jumbotron fluid>
     <div className="firstBorder" />
     <div className="secondBorder" />
@@ -11,16 +13,23 @@ const Header = ({ title, subTitle }) => (
       <span>{title}</span>
     </Container>
     {subTitle && <div className="subtitle">{subTitle}</div>}
+    {onClickBackButton && (
+      <div className="back" onClick={onClickBackButton}>
+        <FontAwesomeIcon icon={faArrowLeft} style={{ 'font-size': '14px' }} />
+      </div>
+    )}
   </Jumbotron>
 );
 
 Header.propTypes = {
   title: PropTypes.string.isRequired,
-  subTitle: PropTypes.string
+  subTitle: PropTypes.string,
+  onClickBackButton: PropTypes.func
 };
 
 Header.defaultProps = {
-  subTitle: null
+  subTitle: null,
+  onClickBackButton: null
 };
 
 export default Header;

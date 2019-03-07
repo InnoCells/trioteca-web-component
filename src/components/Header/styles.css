@@ -22,18 +22,18 @@
   text-align: center;
   padding: 0 25px;
 }
-.subtitle {
+
+.subtitle,
+.back {
   display: flex;
   justify-content: center;
   align-items: center;
 
   position: absolute;
   top: 137px;
-  left: 50%;
   margin-left: -33px;
   margin-top: -15px;
   height: 35px;
-  width: 70px;
 
   background-color: #fff;
   color: #006a4d;
@@ -41,4 +41,18 @@
   border: 1px solid #b1d1c8;
   border-radius: 6px;
   text-align: center;
+}
+.subtitle {
+  left: 50%;
+  width: 70px;
+}
+.back {
+  left: 12%;
+  width: 40px;
+}
+.back:hover {
+  cursor: pointer;
+  background-color: #006a4d;
+  color: #fff;
+  border-color: #208442;
 }

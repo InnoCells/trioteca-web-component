@@ -5,18 +5,25 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import './styles.css';
 
-const NextButton = ({ onClick, children, ...props }) => (
+const NextButton = ({ onClick, children, showRightArow, ...props }) => (
   <Button onClick={onClick} {...props}>
     {children}
-    <span className="float-right">
-      <FontAwesomeIcon icon={faAngleRight} />
-    </span>
+    {showRightArow && (
+      <span className="float-right">
+        <FontAwesomeIcon icon={faAngleRight} style={{ 'font-size': '14px' }} />
+      </span>
+    )}
   </Button>
 );
 
 NextButton.propTypes = {
   onClick: PropTypes.func.isRequired,
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
+  showRightArow: PropTypes.bool
+};
+
+NextButton.defaultProps = {
+  showRightArow: true
 };
 
 export default NextButton;

@@ -31,13 +31,17 @@ const fetchMortgageOption = async ({ price, provinceId, term, savings, purpose, 
 
 const fetchMortgageOptions = async options => {
   const result = await Promise.all([
-    await fetchMortgageOption({ ...options, type: 'F' }),
+    options.term <= 30
+      ? await fetchMortgageOption({ ...options, type: 'F' })
+      : {
+          error: 'Los bancos no ofrecen una hipoteca fija a más de 30 años.'
+        },
     await fetchMortgageOption({ ...options, type: 'V' })
   ]);
   const [fixed, variable] = result;
   return [
-    { ...fixed, name: 'Fija', tin: fixed.tin ? `${fixed.tin}% TIN` : null },
-    { ...variable, name: 'Variable', tin: variable.tin ? `Euribor + ${variable.tin}%` : null }
+    { ...fixed, name: 'Hipoteca Fija', tin: fixed.tin ? `${fixed.tin}% TIN` : null },
+    { ...variable, name: 'Hipoteca Variable', tin: variable.tin ? `Euribor + ${variable.tin}%` : null }
   ];
 };
 
