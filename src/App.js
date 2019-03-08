@@ -44,7 +44,8 @@ class App extends Component {
 
   onMortgageSelected = mortgageOption => {
     const { url } = mortgageOption;
-    window.open(url, '_blank');
+    const { source } = this.props;
+    window.open(`${url}&source=${source}`, '_blank');
   };
 
   MortgagePurposeContainer = ({ nextStep }) => (
@@ -125,7 +126,12 @@ class App extends Component {
 
 App.propTypes = {
   price: PropTypes.number.isRequired,
-  provinceId: PropTypes.number.isRequired
+  provinceId: PropTypes.number.isRequired,
+  source: PropTypes.string
+};
+
+App.defaultProps = {
+  source: null
 };
 
 export default App;
