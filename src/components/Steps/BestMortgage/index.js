@@ -35,7 +35,9 @@ class BestMortage extends React.Component {
     if (error) {
       return (
         <Container>
-          <p>{error}</p>
+          <Row className="content">
+            <p>{error}</p>
+          </Row>
         </Container>
       );
     }
@@ -45,7 +47,11 @@ class BestMortage extends React.Component {
         <Header title={t('bestMortgage.title')} subTitle={stepTitle} onClickBackButton={onClickBackButton} />
         <Row className="content">
           <Col xs="7">
-            {isFetchingMortgageOptions && <Spinner />}
+            {isFetchingMortgageOptions && (
+              <div className="spinnerContainer">
+                <Spinner color="primary" />
+              </div>
+            )}
             {!isFetchingMortgageOptions &&
               options &&
               options.map(option => (

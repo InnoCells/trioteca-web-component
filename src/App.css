@@ -1,6 +1,9 @@
 body {
   font-family: 'Montserrat', sans-serif;
 }
+.text-primary {
+  color: #004b35 !important;
+}
 .col-6 {
   padding: 0 10px;
 }

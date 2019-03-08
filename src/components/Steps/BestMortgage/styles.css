@@ -46,3 +46,7 @@
   top: -10px;
   position: relative;
 }
+
+.spinnerContainer {
+  text-align: center;
+}
