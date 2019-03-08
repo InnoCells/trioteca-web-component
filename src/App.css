@@ -47,7 +47,6 @@ body {
   font-size: 10px;
   position: relative;
   left: 6px;
-  top: -1px;
 }
 .rc-slider-rail {
   background-color: #e6e8ec;
@@ -59,10 +58,23 @@ body {
   color: #004b35;
   font-size: 13px;
   border: 1px solid #004b35;
+  border-right: none;
   text-align: center;
 }
-
+.input-group-append {
+  margin-left: 0;
+}
+.input-group .textInput {
+  padding-left: 2.75rem;
+}
+.input-group-text {
+  font-size: 13px;
+  color: #004b35;
+  border: 1px solid #004b35;
+  border-left: none;
+  background-color: #fff;
+  padding: 0 0.75rem 0 0;
+}
 .textInput:focus {
-  border: none;
   box-shadow: none;
 }

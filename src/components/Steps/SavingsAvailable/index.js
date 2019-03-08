@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, Row, Col, Input } from 'reactstrap';
+import { Container, Row, Col, Input, InputGroup, InputGroupAddon } from 'reactstrap';
 import Slider from 'rc-slider';
 import { withTranslation } from 'react-i18next';
 import 'rc-slider/assets/index.css';
@@ -46,13 +46,16 @@ class SavingsAvailable extends React.Component {
         <Header title={t('savingsAvailable.title')} subTitle={stepTitle} onClickBackButton={onClickBackButton} />
         <Row className="content">
           <Col xs="7">
-            <Input
-              className="textInput"
-              type="number"
-              value={inputSavings}
-              onChange={this.handleTextInputChange}
-              onBlur={this.handleTextInputBlur}
-            />
+            <InputGroup>
+              <Input
+                className="textInput"
+                type="number"
+                value={inputSavings}
+                onChange={this.handleTextInputChange}
+                onBlur={this.handleTextInputBlur}
+              />
+              <InputGroupAddon addonType="append">€</InputGroupAddon>
+            </InputGroup>
             <Slider
               className="slider"
               onChange={this.handleSliderChange}

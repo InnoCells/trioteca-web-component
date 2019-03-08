@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, Row, Col, Input } from 'reactstrap';
+import { Container, Row, Col, Input, InputGroup, InputGroupAddon } from 'reactstrap';
 import Slider from 'rc-slider';
 import { withTranslation } from 'react-i18next';
 import NextButton from '../../NextButton';
@@ -46,13 +46,16 @@ class MortageTerm extends React.Component {
         <Header title={t('mortgageTerm.title')} subTitle={stepTitle} onClickBackButton={onClickBackButton} />
         <Row className="content">
           <Col xs="7">
-            <Input
-              className="textInput"
-              type="number"
-              value={inputTerm}
-              onChange={this.handleTextInputChange}
-              onBlur={this.handleTextInputBlur}
-            />
+            <InputGroup>
+              <Input
+                className="textInput"
+                type="number"
+                value={inputTerm}
+                onChange={this.handleTextInputChange}
+                onBlur={this.handleTextInputBlur}
+              />
+              <InputGroupAddon addonType="append">años</InputGroupAddon>
+            </InputGroup>
             <Slider onChange={this.handleSliderChange} tabIndex={-1} value={term} min={10} max={40} />
             <NextButton onClick={this.onSelectOption}>{t('common.next')}</NextButton>
           </Col>
