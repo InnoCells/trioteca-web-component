@@ -7,6 +7,7 @@ import 'rc-slider/assets/index.css';
 
 import NextButton from '../../NextButton';
 import Header from '../../Header';
+import './styles.css';
 
 class SavingsAvailable extends React.Component {
   constructor(props) {
@@ -40,7 +41,15 @@ class SavingsAvailable extends React.Component {
 
   render() {
     const { savings, inputSavings } = this.state;
-    const { stepTitle, minAmount, maxAmount, initialAmount, t, onClickBackButton } = this.props;
+    const {
+      stepTitle,
+      minAmount,
+      maxAmount,
+      initialAmount,
+      t,
+      onClickBackButton,
+      minRecommendedSavingsAmount
+    } = this.props;
     return (
       <Container>
         <Header title={t('savingsAvailable.title')} subTitle={stepTitle} onClickBackButton={onClickBackButton} />
@@ -56,6 +65,9 @@ class SavingsAvailable extends React.Component {
               />
               <InputGroupAddon addonType="append">€</InputGroupAddon>
             </InputGroup>
+            <div className={`error ${savings >= minRecommendedSavingsAmount ? 'hidden' : null}`}>
+              {`El importe mínimo de ahorro para el banco es de ${minRecommendedSavingsAmount} €`}
+            </div>
             <Slider
               className="slider"
               onChange={this.handleSliderChange}
@@ -81,6 +93,7 @@ SavingsAvailable.propTypes = {
   initialAmount: PropTypes.number,
   minAmount: PropTypes.number,
   maxAmount: PropTypes.number,
+  minRecommendedSavingsAmount: PropTypes.number,
   stepTitle: PropTypes.string
 };
 
@@ -88,6 +101,7 @@ SavingsAvailable.defaultProps = {
   initialAmount: 20000,
   minAmount: 10000,
   maxAmount: 1000000,
+  minRecommendedSavingsAmount: 0,
   stepTitle: null,
   onClickBackButton: null
 };

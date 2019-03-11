@@ -76,6 +76,7 @@ class App extends Component {
       }}
       onClickBackButton={previousStep}
       initialAmount={price * minSavingsPercent(term)}
+      minRecommendedSavingsAmount={price * minSavingsPercent(term)}
       maxAmount={price}
       stepTitle="2 / 3"
     />

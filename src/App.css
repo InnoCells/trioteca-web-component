@@ -14,9 +14,13 @@ body {
 .content {
   flex: 1;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  margin-top: 50px;
   height: 240px;
+}
+.hidden {
+  display: none;
 }
 @media (min-width: 768px) {
   .container {
