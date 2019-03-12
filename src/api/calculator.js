@@ -1,4 +1,4 @@
-const minSavingsPercent = purpose => (purpose === 'primary' ? 0.35 : 0.45);
+const minSavingsPercent = purpose => (purpose === 'occasional' ? 0.45 : 0.35);
 
 export const minimumRecommendedSavingsAmount = (price, purpose) => price * minSavingsPercent(purpose);
 

@@ -14,7 +14,7 @@ class App extends Component {
     income: null,
     term: null,
     error: null,
-    mortgageOptions: [],
+    mortgageOptions: { error: null, options: [] },
     isFetchingMortgageOptions: false
   };
 
