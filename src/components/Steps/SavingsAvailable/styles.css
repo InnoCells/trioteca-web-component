@@ -1,6 +1,6 @@
-.error {
+.savingsAvailable-error {
   color: #bfd859;
   font-size: 12px;
   text-align: center;
-  margin-top: 5px;
+  margin: 5px 0 -14px 0;
 }

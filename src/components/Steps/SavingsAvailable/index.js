@@ -65,7 +65,10 @@ class SavingsAvailable extends React.Component {
               />
               <InputGroupAddon addonType="append">€</InputGroupAddon>
             </InputGroup>
-            <div className={`error ${savings >= minRecommendedSavingsAmount ? 'hidden' : null}`}>
+            <div
+              className="savingsAvailable-error"
+              style={{ visibility: savings < minRecommendedSavingsAmount ? 'visible' : 'hidden' }}
+            >
               {`El importe mínimo de ahorro para el banco es de ${minRecommendedSavingsAmount} €`}
             </div>
             <Slider
