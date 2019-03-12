@@ -1,3 +1,7 @@
+const minSavingsPercent = purpose => (purpose === 'primary' ? 0.35 : 0.45);
+
+export const minimumRecommendedSavingsAmount = (price, purpose) => price * minSavingsPercent(purpose);
+
 const fetchMortgageOption = async ({ price, provinceId, term, savings, purpose, income, type }) => {
   const response = await fetch('https://trioteca.com/api/walking_user ', {
     method: 'POST',
@@ -30,13 +34,18 @@ const fetchMortgageOption = async ({ price, provinceId, term, savings, purpose, 
 };
 
 const fetchMortgageOptions = async options => {
+  const { price, purpose } = options;
+  const savings =
+    options.savings < minimumRecommendedSavingsAmount(price, purpose)
+      ? minimumRecommendedSavingsAmount(price, purpose)
+      : options.savings;
   const result = await Promise.all([
-    options.term <= 30
-      ? await fetchMortgageOption({ ...options, type: 'F' })
+    options.term >= 30
+      ? await fetchMortgageOption({ ...options, savings, type: 'F' })
       : {
           error: 'Los bancos no ofrecen una hipoteca fija a más de 30 años.'
         },
-    await fetchMortgageOption({ ...options, type: 'V' })
+    await fetchMortgageOption({ ...options, savings, type: 'V' })
   ]);
   const [fixed, variable] = result;
   const url = `https://trioteca.com/dashboard/configura?uuid=${fixed.uuid}`;

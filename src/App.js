@@ -4,11 +4,9 @@ import PropTypes from 'prop-types';
 import StepWizard from './components/step-wizard';
 import { MortgagePurpose, Income, MortgageTerm, SavingsAvailable, BestMortgage } from './components/Steps';
 import Footer from './components/Footer';
-import fetchMortgageOptions from './api/calculator';
+import fetchMortgageOptions, { minimumRecommendedSavingsAmount } from './api/calculator';
 
 import './App.css';
-
-const minSavingsPercent = purpose => (purpose === 'primary' ? 0.35 : 0.45);
 
 class App extends Component {
   state = {
@@ -30,7 +28,7 @@ class App extends Component {
           const mortgageOptions = await fetchMortgageOptions({
             price,
             provinceId,
-            savings: savings < price * minSavingsPercent(term) ? price * minSavingsPercent(term) : savings,
+            savings,
             term,
             purpose,
             income
@@ -68,19 +66,24 @@ class App extends Component {
     />
   );
 
-  SavingsAvailableContainer = ({ nextStep, term, price, previousStep }) => (
-    <SavingsAvailable
-      onSelectOption={savings => {
-        this.setState({ savings });
-        nextStep();
-      }}
-      onClickBackButton={previousStep}
-      initialAmount={price * minSavingsPercent(term)}
-      minRecommendedSavingsAmount={price * minSavingsPercent(term)}
-      maxAmount={price}
-      stepTitle="2 / 3"
-    />
-  );
+  SavingsAvailableContainer = ({ nextStep, previousStep }) => {
+    const { purpose } = this.state;
+    const { price } = this.props;
+    const minRecommendedSavingsAmount = minimumRecommendedSavingsAmount(price, purpose);
+    return (
+      <SavingsAvailable
+        onSelectOption={savings => {
+          this.setState({ savings });
+          nextStep();
+        }}
+        onClickBackButton={previousStep}
+        initialAmount={minRecommendedSavingsAmount}
+        minRecommendedSavingsAmount={minRecommendedSavingsAmount}
+        maxAmount={price}
+        stepTitle="2 / 3"
+      />
+    );
+  };
 
   MortgageTermContainer = ({ nextStep, previousStep }) => (
     <MortgageTerm
@@ -107,15 +110,12 @@ class App extends Component {
   };
 
   render() {
-    const { price } = this.props;
-    const { term } = this.state;
-
     return (
       <div className="wizardWrapper">
         <StepWizard>
           <this.MortgagePurposeContainer />
           <this.IncomeContainer />
-          <this.SavingsAvailableContainer price={price} term={term} />
+          <this.SavingsAvailableContainer />
           <this.MortgageTermContainer />
           <this.BestMortgageContainer />
         </StepWizard>

@@ -52,6 +52,7 @@ class BestMortage extends React.Component {
                 <Spinner color="primary" />
               </div>
             )}
+            {error && <p>{error}</p>}
             {!isFetchingMortgageOptions &&
               options &&
               options.map(option => (
