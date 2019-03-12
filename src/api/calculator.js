@@ -35,10 +35,7 @@ const fetchMortgageOption = async ({ price, provinceId, term, savings, purpose, 
 
 const fetchMortgageOptions = async options => {
   const { price, purpose } = options;
-  const savings =
-    options.savings < minimumRecommendedSavingsAmount(price, purpose)
-      ? minimumRecommendedSavingsAmount(price, purpose)
-      : options.savings;
+  const savings = Math.max(options.savings, minimumRecommendedSavingsAmount(price, purpose));
   const result = await Promise.all([
     options.term >= 30
       ? await fetchMortgageOption({ ...options, savings, type: 'F' })
