@@ -35,7 +35,14 @@ const fetchMortgageOption = async ({ price, provinceId, term, savings, purpose, 
 
 const fetchMortgageOptions = async options => {
   const { price, purpose } = options;
-  const savings = Math.max(options.savings, minimumRecommendedSavingsAmount(price, purpose));
+  const minRecommendedSavingsAmount = minimumRecommendedSavingsAmount(price, purpose);
+  let { savings } = options;
+  let comments = null;
+
+  if (savings < minRecommendedSavingsAmount) {
+    savings = minRecommendedSavingsAmount;
+    comments = `Cálculo realizado con el importe mínimo de ahorro necesario: ${minRecommendedSavingsAmount} €.`;
+  }
   const result = await Promise.all([
     options.term >= 30
       ? await fetchMortgageOption({ ...options, savings, type: 'F' })
@@ -46,20 +53,23 @@ const fetchMortgageOptions = async options => {
   ]);
   const [fixed, variable] = result;
   const url = `https://trioteca.com/dashboard/configura?uuid=${fixed.uuid}`;
-  return [
-    {
-      ...fixed,
-      name: 'Hipoteca Fija',
-      tin: fixed.tin ? `${fixed.tin}% TIN` : null,
-      url
-    },
-    {
-      ...variable,
-      name: 'Hipoteca Variable',
-      tin: variable.tin ? `Euribor + ${variable.tin}%` : null,
-      url
-    }
-  ];
+  return {
+    comments,
+    options: [
+      {
+        ...fixed,
+        name: 'Hipoteca Fija',
+        tin: fixed.tin ? `${fixed.tin}% TIN` : null,
+        url
+      },
+      {
+        ...variable,
+        name: 'Hipoteca Variable',
+        tin: variable.tin ? `Euribor + ${variable.tin}%` : null,
+        url
+      }
+    ]
+  };
 };
 
 export default fetchMortgageOptions;

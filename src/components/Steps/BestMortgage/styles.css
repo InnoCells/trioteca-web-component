@@ -51,3 +51,10 @@
 .spinnerContainer {
   text-align: center;
 }
+
+.bestMortgage-comments {
+  text-align: center;
+  font-size: 12px;
+  margin-top: -20px;
+  color: #bfd859;
+}

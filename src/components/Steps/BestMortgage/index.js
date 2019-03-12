@@ -30,7 +30,15 @@ const OptionButton = ({ onSelectOption, option: { name, tin, monthlyPayment, err
 // eslint-disable-next-line react/prefer-stateless-function
 class BestMortage extends React.Component {
   render() {
-    const { onSelectOption, options, isFetchingMortgageOptions, stepTitle, error, t, onClickBackButton } = this.props;
+    const {
+      onSelectOption,
+      options: { options, comments },
+      isFetchingMortgageOptions,
+      stepTitle,
+      error,
+      t,
+      onClickBackButton
+    } = this.props;
 
     if (error) {
       return (
@@ -52,7 +60,7 @@ class BestMortage extends React.Component {
                 <Spinner color="primary" />
               </div>
             )}
-            {error && <p>{error}</p>}
+            {comments && <p className="bestMortgage-comments">{comments}</p>}
             {!isFetchingMortgageOptions &&
               options &&
               options.map(option => (
@@ -82,7 +90,7 @@ BestMortage.propTypes = {
   onClickBackButton: PropTypes.func,
   isFetchingMortgageOptions: PropTypes.bool,
   stepTitle: PropTypes.string,
-  options: PropTypes.arrayOf(MortgageOptionType),
+  options: PropTypes.shape({ comments: PropTypes.string, options: PropTypes.arrayOf(MortgageOptionType) }),
   error: PropTypes.string
 };
 
