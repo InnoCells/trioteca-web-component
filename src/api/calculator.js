@@ -41,7 +41,11 @@ const fetchMortgageOptions = async options => {
 
   if (savings < minRecommendedSavingsAmount) {
     savings = minRecommendedSavingsAmount;
-    comments = `Cálculo realizado con el importe mínimo de ahorro necesario: ${minRecommendedSavingsAmount} €.`;
+    comments = `El banco necesitará un importe mínimo de ahorro de ${new Intl.NumberFormat('es-ES', {
+      style: 'currency',
+      maximumSignificantDigits: 1,
+      currency: 'EUR'
+    }).format(minRecommendedSavingsAmount)}.`;
   }
   const result = await Promise.all([
     options.term >= 30

@@ -69,7 +69,11 @@ class SavingsAvailable extends React.Component {
               className="savingsAvailable-error"
               style={{ visibility: savings < minRecommendedSavingsAmount ? 'visible' : 'hidden' }}
             >
-              {`El importe mínimo de ahorro para el banco es de ${minRecommendedSavingsAmount} €`}
+              {`El importe mínimo de ahorro para el banco es de ${new Intl.NumberFormat('es-ES', {
+                style: 'currency',
+                maximumSignificantDigits: 1,
+                currency: 'EUR'
+              }).format(minRecommendedSavingsAmount)}`}
             </div>
             <Slider
               className="slider"
