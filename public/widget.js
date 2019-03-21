@@ -142,6 +142,8 @@ function _getPrototypeOf(o) {
   return _getPrototypeOf(o);
 }
 
+var IFRAME_SRC = 'http://trioteca.webcomponent.s3-website.eu-west-3.amazonaws.com';
+
 var TriotecaWidget =
   /*#__PURE__*/
   (function(_HTMLElement) {
@@ -163,11 +165,28 @@ var TriotecaWidget =
 
     _createClass(TriotecaWidget, [
       {
+        key: 'handleIframeEvent',
+        value: function handleIframeEvent(e) {
+          if (e.origin !== IFRAME_SRC) {
+            return;
+          }
+
+          this.dispatchEvent(
+            new CustomEvent('trioteca', {
+              bubbles: true,
+              detail: e.data
+            })
+          );
+        }
+      },
+      {
         key: 'connectedCallback',
         value: function connectedCallback() {
+          window.addEventListener('message', this.handleIframeEvent, false);
           var iframe = document.createElement('iframe');
           iframe.style = 'border: 0; height: 100%; width: 100%';
-          iframe.src = 'http://trioteca.webcomponent.s3-website.eu-west-3.amazonaws.com?provinceId='
+          iframe.src = ''
+            .concat(IFRAME_SRC, '?provinceId=')
             .concat(this.getAttribute('provinceId'), '&price=')
             .concat(this.getAttribute('price'), '&source=')
             .concat(this.getAttribute('source'));

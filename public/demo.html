@@ -8,16 +8,23 @@
       }
     </style>
     <meta charset="utf-8" />
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="theme-color" content="#000000" />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <script src="http://s3.eu-west-3.amazonaws.com/trioteca.webcomponent/widget.js"></script>
+    <script src="http://trioteca.webcomponent.s3-website.eu-west-3.amazonaws.com/widget.js"></script>
 
     <title>Trioteca Widget Demo</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+    <script>
+      window.addEventListener(
+        'trioteca',
+        function(e) {
+          console.log(e.detail);
+        },
+        false
+      );
+    </script>
     <div
       style="box-shadow: 4px 4px 30px gray; position: absolute; right: 20px; bottom: 20px; width: 375px; height: 410px;"
     >

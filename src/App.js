@@ -18,6 +18,8 @@ class App extends Component {
     isFetchingMortgageOptions: false
   };
 
+  postMessage = data => window.parent.postMessage(data, process.env.REACT_APP_IFRAME_HOST);
+
   onTermSelected = async newTerm =>
     new Promise(async resolve => {
       this.setState({ term: newTerm, isFetchingMortgageOptions: true }, async () => {
@@ -44,6 +46,9 @@ class App extends Component {
     const { url } = mortgageOption;
     const { source } = this.props;
     window.open(`${url}&source=${source}`, '_blank');
+
+    const { purpose, income, term, savings } = this.state;
+    this.postMessage({ event: 'goToTrioteca', purpose, income, term, savings });
   };
 
   MortgagePurposeContainer = ({ nextStep }) => (
@@ -51,6 +56,7 @@ class App extends Component {
       onSelectOption={purpose => {
         this.setState({ purpose });
         nextStep();
+        this.postMessage({ event: 'goToStep1' });
       }}
     />
   );
@@ -60,6 +66,7 @@ class App extends Component {
       onSelectOption={income => {
         this.setState({ income });
         nextStep();
+        this.postMessage({ event: 'goToStep2' });
       }}
       onClickBackButton={previousStep}
       stepTitle="1 / 3"
@@ -75,6 +82,7 @@ class App extends Component {
         onSelectOption={savings => {
           this.setState({ savings });
           nextStep();
+          this.postMessage({ event: 'goToStep3' });
         }}
         onClickBackButton={previousStep}
         initialAmount={minRecommendedSavingsAmount}
@@ -90,6 +98,7 @@ class App extends Component {
       onSelectOption={async term => {
         await this.onTermSelected(term);
         nextStep();
+        this.postMessage({ event: 'goToStep4' });
       }}
       onClickBackButton={previousStep}
       stepTitle="3 / 3"
