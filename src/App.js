@@ -107,6 +107,23 @@ class App extends Component {
 
   BestMortgageContainer = ({ previousStep }) => {
     const { isFetchingMortgageOptions, mortgageOptions, error } = this.state;
+    if (mortgageOptions && mortgageOptions.options.length > 0) {
+      const { options } = mortgageOptions;
+      const fixed = options.filter(option => option.type === 'F')[0];
+      const variable = options.filter(option => option.type === 'V')[0];
+      const minMonthlyAmountFixed = fixed ? fixed.monthlyPayment : null;
+      const numBanksFixed = fixed ? fixed.numBanks : null;
+      const minMonthlyAmountVariable = variable ? variable.monthlyPayment : null;
+      const numBanksVariable = variable ? variable.numBanks : null;
+
+      this.postMessage({
+        event: 'mortgageInfo',
+        minMonthlyAmountFixed,
+        numBanksFixed,
+        minMonthlyAmountVariable,
+        numBanksVariable
+      });
+    }
     return (
       <BestMortgage
         onSelectOption={this.onMortgageSelected}
