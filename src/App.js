@@ -112,9 +112,9 @@ class App extends Component {
       const fixed = options.filter(option => option.type === 'F')[0];
       const variable = options.filter(option => option.type === 'V')[0];
       const minMonthlyAmountFixed = fixed ? fixed.monthlyPayment : null;
-      const numBanksFixed = fixed ? fixed.numBanks : null;
+      const numBanksFixed = fixed ? fixed.total : null;
       const minMonthlyAmountVariable = variable ? variable.monthlyPayment : null;
-      const numBanksVariable = variable ? variable.numBanks : null;
+      const numBanksVariable = variable ? variable.total : null;
 
       this.postMessage({
         event: 'mortgageInfo',

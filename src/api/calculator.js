@@ -3,7 +3,7 @@ const minSavingsPercent = purpose => (purpose === 'occasional' ? 0.45 : 0.35);
 export const minimumRecommendedSavingsAmount = (price, purpose) => price * minSavingsPercent(purpose);
 
 const fetchMortgageOption = async ({ price, provinceId, term, savings, purpose, income, type }) => {
-  const response = await fetch('https://trioteca.com/api/walking_user ', {
+  const response = await fetch('https://trioteca.omatech.com/api/walking_user ', {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -24,13 +24,13 @@ const fetchMortgageOption = async ({ price, provinceId, term, savings, purpose, 
 
   const result = await response.json();
 
-  const { uuid, results } = result;
+  const { uuid, results, total } = result;
   if (!results) {
     throw new Error('Unexpected response: missing results');
   }
 
   const { monthly_payment: monthlyPayment, tin } = results;
-  return { uuid, monthlyPayment, tin, type };
+  return { uuid, monthlyPayment, tin, type, total };
 };
 
 const fetchMortgageOptions = async options => {
