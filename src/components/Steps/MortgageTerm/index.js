@@ -56,7 +56,7 @@ class MortageTerm extends React.Component {
               />
               <InputGroupAddon addonType="append">años</InputGroupAddon>
             </InputGroup>
-            <Slider onChange={this.handleSliderChange} tabIndex={-1} value={term} min={10} max={40} />
+            <Slider onChange={this.handleSliderChange} tabIndex={-1} value={term} min={10} max={40} step={5} />
             <NextButton onClick={this.onSelectOption}>{t('common.next')}</NextButton>
           </Col>
         </Row>

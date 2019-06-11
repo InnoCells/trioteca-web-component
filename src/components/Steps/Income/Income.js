@@ -90,7 +90,7 @@ Income.defaultProps = {
   onClickBackButton: null,
   initialAmount: 750,
   minAmount: 0,
-  maxAmount: 3500
+  maxAmount: 10000
 };
 
 export default withTranslation()(Income);
